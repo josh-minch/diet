@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { ChakraProvider, Heading } from '@chakra-ui/react'
+import { Container } from '@chakra-ui/react'
+import Header from './components/Header';
+import AgeForm from './components/AgeForm';
+import { GenderForm } from './components/GenderForm';
+import {
+  Stack,
+  Text
+} from '@chakra-ui/react';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider>
+      <Container>
+        <Header />
+        <Heading mt={7} size='md' as='h2'>
+          About You
+        </Heading>
+        <Text>
+          Used to get your dietary needs
+        </Text>
+        <Stack mt={4} spacing={4}>
+          <AgeForm />
+          <GenderForm />
+        </Stack>
+      </Container>
+    </ChakraProvider >
   );
 }
 
