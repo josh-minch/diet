@@ -2,7 +2,8 @@ import { ChakraProvider, Heading } from '@chakra-ui/react'
 import { Container } from '@chakra-ui/react'
 import { Header } from './components/Header';
 import { AgeForm } from './components/AgeForm';
-import { GenderForm } from './components/GenderForm';
+import { SexForm } from './components/SexForm';
+import { ActivityForm } from './components/ActivityForm';
 import {
   Stack,
   Text
@@ -22,7 +23,8 @@ function App() {
         </Text>
         <Stack mt={4} spacing={4}>
           <AgeForm />
-          <GenderForm />
+          <SexForm />
+          <ActivityForm />
         </Stack>
       </Container>
     </ChakraProvider >
