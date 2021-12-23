@@ -4,14 +4,14 @@ import {
     Radio,
     VStack,
     Checkbox,
-    Stack
+    Stack,
 } from '@chakra-ui/react'
 
 export const PregForm = ({ marginLeft }) => {
     const [pregValue, setPregValue] = React.useState()
     const [radioDisabled, setRadioDisabled] = React.useState(true)
 
-    const handlePregCheck = (e) => {
+    const handlePregCheck = e => {
         const pregChecked = e.target.checked
         if (!pregChecked) {
             setPregValue('')
@@ -20,10 +20,10 @@ export const PregForm = ({ marginLeft }) => {
     }
 
     return (
-        <VStack ml={marginLeft} mt={4} align='left'>
-            <Checkbox value='pregnant' onChange={(e) => handlePregCheck(e)}>Pregnant</Checkbox>
+        <VStack mt={4} align='left'>
+            <Checkbox value='pregnant' onChange={handlePregCheck}>Pregnant</Checkbox>
             <RadioGroup onChange={setPregValue} value={pregValue}>
-                <Stack direction='column'>
+                <Stack ml={marginLeft} direction='column'>
                     <Radio value='firstTrimester' isDisabled={radioDisabled}>1st trimester (0–13 weeks)</Radio>
                     <Radio value='secondTrimester' isDisabled={radioDisabled}>2nd trimester (13–27 weeks)</Radio>
                     <Radio value='thirdTrimester' isDisabled={radioDisabled}>3rd trimester (27+ weeks)</Radio>

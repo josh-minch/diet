@@ -20,10 +20,10 @@ export const LactForm = ({ marginLeft }) => {
     }
 
     return (
-        <VStack ml={marginLeft} mt={4} align='left'>
+        <VStack mt={4} align='left'>
             <Checkbox value='lact' onChange={(e) => handleLactCheck(e)}>Breastfeeding</Checkbox>
             <RadioGroup onChange={setLactValue} value={lactValue}>
-                <Stack direction='column'>
+                <Stack ml={marginLeft} direction='column'>
                     <Radio value='lactValue0' isDisabled={radioDisabled}>0–6 months</Radio>
                     <Radio value='lactValue1' isDisabled={radioDisabled}>6+ months</Radio>
                 </Stack>

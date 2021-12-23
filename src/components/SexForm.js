@@ -25,8 +25,8 @@ export const SexForm = () => {
                 </HStack>
             </RadioGroup>
             <Collapse in={isOpen} animateOpacity>
-                <PregForm marginLeft={2} />
-                <LactForm marginLeft={2} />
+                <PregForm marginLeft={3} />
+                <LactForm marginLeft={3} />
             </Collapse>
         </FormControl >
     )

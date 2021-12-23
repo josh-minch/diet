@@ -25,7 +25,7 @@ function App() {
           Used to get your dietary needs
         </Text>
         <Stack mt={4} spacing={4}>
-          <AgeForm ageUnit={ageUnit} setAge={setAge} setAgeUnit={setAgeUnit} />
+          <AgeForm age={age} ageUnit={ageUnit} setAge={setAge} setAgeUnit={setAgeUnit} />
           <SexForm />
           <ActivityForm setActivity={setActivity} />
           <div>
