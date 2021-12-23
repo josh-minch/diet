@@ -28,8 +28,6 @@ export const LactForm = () => {
                     <Radio value='lactValue1' isDisabled={radioDisabled}>6+ months</Radio>
                 </Stack>
             </RadioGroup>
-
-
         </VStack>
     )
 }
