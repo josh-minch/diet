@@ -11,11 +11,28 @@ import {
     Select
 } from '@chakra-ui/react'
 
-export const AgeForm = () => {
+export const AgeForm = ({ ageUnit, setAge, setAgeUnit }) => {
     const [minAge, setMinAge] = React.useState(2)
 
+    const handleAgeChange = e => {
+        const inputtedAge = e.target.value
+        let adjustedAge = e.target.value
+
+        // If age is set below minimum of 2 for years or 12 for months,
+        // then adjust it to these values
+        if (ageUnit === 'years') {
+            adjustedAge = Math.max(2, inputtedAge)
+        } else if (ageUnit === 'months') {
+            adjustedAge = Math.max(12, inputtedAge)
+        }
+
+        setAge(adjustedAge)
+    }
+
     const handleUnitChange = (e) => {
-        const newMinAge = e.target.value === 'years' ? 2 : 12
+        const selectedUnit = e.target.value
+        setAgeUnit(selectedUnit)
+        const newMinAge = selectedUnit === 'years' ? 2 : 12
         setMinAge(newMinAge)
     }
 
@@ -24,7 +41,7 @@ export const AgeForm = () => {
             <FormLabel htmlFor='age'>Age</FormLabel>
             <HStack spacing={2} >
                 <NumberInput min={minAge}>
-                    <NumberInputField id='age' />
+                    <NumberInputField onChange={handleAgeChange} id='age' />
                     <NumberInputStepper>
                         <NumberIncrementStepper />
                         <NumberDecrementStepper />

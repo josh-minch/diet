@@ -1,14 +1,17 @@
 import { FormControl, FormLabel, Select } from '@chakra-ui/react'
 import React from 'react'
 
-export const ActivityForm = () => {
+export const ActivityForm = ({ setActivity }) => {
+    const handleOnChange = (e) => {
+        setActivity(e.target.value)
+    }
     return (
         <FormControl>
             <FormLabel htmlFor='activity'>Activity Level</FormLabel>
-            <Select id='activity'>
-                <option>Sedentary</option>
-                <option>Moderately Active</option>
-                <option>Active</option>
+            <Select onChange={handleOnChange} id='activity' >
+                <option value='sed'>Sedentary</option>
+                <option value='mod'>Moderately Active</option>
+                <option value='act'>Active</option>
             </Select>
         </FormControl >
     )
