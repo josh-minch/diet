@@ -1,7 +1,7 @@
 import { ChakraProvider, Heading } from '@chakra-ui/react'
 import { Container } from '@chakra-ui/react'
-import Header from './components/Header';
-import AgeForm from './components/AgeForm';
+import { Header } from './components/Header';
+import { AgeForm } from './components/AgeForm';
 import { GenderForm } from './components/GenderForm';
 import {
   Stack,

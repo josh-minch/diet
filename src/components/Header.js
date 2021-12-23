@@ -8,5 +8,3 @@ export const Header = () => {
         </Heading>
     )
 }
-
-export default Header

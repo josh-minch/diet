@@ -17,10 +17,9 @@ const AGE_SELECTOR = {
 let optionsState = AGE_SELECTOR.YEARS
 
 export const AgeForm = () => {
-
     return (
         <FormControl>
-            <FormLabel as='legend'>Age</FormLabel>
+            <FormLabel>Age</FormLabel>
             <HStack spacing={2} >
                 <NumberInput
                     min={0}
@@ -37,9 +36,6 @@ export const AgeForm = () => {
                     <option value='months'>Months</option>
                 </Select>
             </HStack>
-
         </FormControl>
     )
 }
-
-export default AgeForm
