@@ -7,7 +7,7 @@ import {
     Stack
 } from '@chakra-ui/react'
 
-export const PregForm = () => {
+export const PregForm = ({ marginLeft }) => {
     const [pregValue, setPregValue] = React.useState()
     const [radioDisabled, setRadioDisabled] = React.useState(true)
 
@@ -20,7 +20,7 @@ export const PregForm = () => {
     }
 
     return (
-        <VStack mt={4} align='left'>
+        <VStack ml={marginLeft} mt={4} align='left'>
             <Checkbox value='pregnant' onChange={(e) => handlePregCheck(e)}>Pregnant</Checkbox>
             <RadioGroup onChange={setPregValue} value={pregValue}>
                 <Stack direction='column'>

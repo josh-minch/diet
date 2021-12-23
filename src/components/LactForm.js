@@ -7,7 +7,7 @@ import {
     Stack
 } from '@chakra-ui/react'
 
-export const LactForm = () => {
+export const LactForm = ({ marginLeft }) => {
     const [lactValue, setLactValue] = React.useState()
     const [radioDisabled, setRadioDisabled] = React.useState(true)
 
@@ -20,7 +20,7 @@ export const LactForm = () => {
     }
 
     return (
-        <VStack mt={4} align='left'>
+        <VStack ml={marginLeft} mt={4} align='left'>
             <Checkbox value='lact' onChange={(e) => handleLactCheck(e)}>Breastfeeding</Checkbox>
             <RadioGroup onChange={setLactValue} value={lactValue}>
                 <Stack direction='column'>
