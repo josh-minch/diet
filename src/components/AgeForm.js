@@ -1,3 +1,4 @@
+import React from 'react'
 import {
     FormControl,
     FormLabel,
@@ -10,32 +11,30 @@ import {
     Select
 } from '@chakra-ui/react'
 
-const AGE_SELECTOR = {
-    YEARS: 0,
-    MONTHS: 1
-}
-let optionsState = AGE_SELECTOR.YEARS
-
 export const AgeForm = () => {
+    const [minAge, setMinAge] = React.useState(2)
+
+    const handleUnitChange = (e) => {
+        const newMinAge = e.target.value === 'years' ? 2 : 12
+        setMinAge(newMinAge)
+    }
+
     return (
         <FormControl>
-            <FormLabel>Age</FormLabel>
+            <FormLabel htmlFor='age'>Age</FormLabel>
             <HStack spacing={2} >
-                <NumberInput
-                    min={0}
-                    maxW={24}
-                >
-                    <NumberInputField />
+                <NumberInput min={minAge}>
+                    <NumberInputField id='age' />
                     <NumberInputStepper>
                         <NumberIncrementStepper />
                         <NumberDecrementStepper />
                     </NumberInputStepper>
                 </NumberInput>
-                <Select width={28}>
-                    <option value='years' selected>Years</option>
+                <Select onChange={(e) => handleUnitChange(e)}>
+                    <option value='years'>Years</option>
                     <option value='months'>Months</option>
                 </Select>
             </HStack>
-        </FormControl>
+        </FormControl >
     )
 }
