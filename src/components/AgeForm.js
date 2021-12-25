@@ -10,20 +10,18 @@ import {
     HStack,
     Select
 } from '@chakra-ui/react'
-import { render } from '@testing-library/react'
 
 export const AgeForm = ({ age, ageUnit, setAge, setAgeUnit }) => {
     const [minAge, setMinAge] = React.useState(2)
 
     const handleUnitChange = e => {
         const selectedUnit = e.target.value
-        setAgeUnit(selectedUnit)
-
         const minAge = selectedUnit === 'years' ? 2 : 12
-        setMinAge(minAge)
-
         const adjustedAge = Math.max(minAge, age)
+
+        setMinAge(minAge)
         setAge(adjustedAge)
+        setAgeUnit(selectedUnit)
     }
 
     return (

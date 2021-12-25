@@ -11,7 +11,7 @@ import {
 
 
 function App() {
-  const [age, setAge] = React.useState()
+  const [age, setAge] = React.useState('')
   const [ageUnit, setAgeUnit] = React.useState('years')
   const [activity, setActivity] = React.useState('sed')
   return (
