@@ -14,26 +14,24 @@ export const CalorieForm = () => {
     const [ageUnit, setAgeUnit] = React.useState('years')
     const [activity, setActivity] = React.useState('sed')
     return (
-        <ChakraProvider>
-            <Container>
-                <Heading mt={7} size='md' as='h2'>
-                    About You
-                </Heading>
-                <Text>
-                    Used to get your dietary needs
-                </Text>
-                <Stack mt={4} spacing={4}>
-                    <AgeForm age={age} ageUnit={ageUnit} setAge={setAge} setAgeUnit={setAgeUnit} />
-                    <SexForm />
-                    <ActivityForm setActivity={setActivity} />
-                    <div>
-                        {age}
-                        {ageUnit}
-                        {activity}
-                    </div>
-                </Stack>
-            </Container>
-        </ChakraProvider >
+        <Container>
+            <Heading size='md' as='h2'>
+                About You
+            </Heading>
+            <Text>
+                Used to get your dietary needs
+            </Text>
+            <Stack mt={4} spacing={4}>
+                <AgeForm age={age} ageUnit={ageUnit} setAge={setAge} setAgeUnit={setAgeUnit} />
+                <SexForm />
+                <ActivityForm setActivity={setActivity} />
+                <div>
+                    {age}
+                    {ageUnit}
+                    {activity}
+                </div>
+            </Stack>
+        </Container>
     );
 }
 

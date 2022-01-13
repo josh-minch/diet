@@ -1,3 +1,3 @@
-export const dairy = ['milk', 'soy milk', 'yogurt', 'buttermilk', 'kefir', 'frozen yogurt', 'dairy desserts', 'cheeses', 'brie', 'camembert', 'cheddar', 'cottage cheese', 'colby', 'edam', 'feta', 'fontina', 'goat', 'gouda', 'gruyere', 'limburger', 'queso anejo', 'queso asadero', 'queso chihuahua', 'monterey', 'mozzarella', 'muenster', 'parmesan', 'provolone', 'ricotta', 'Swiss',]
+export const dairy = ['milk', 'soy milk', 'yogurt', 'cheddar', 'cottage cheese', 'Colby', 'feta', 'goat cheese', 'Monterey Jack', 'mozzarella', 'parmesan', 'provolone', 'ricotta', 'Swiss cheese', 'buttermilk', 'kefir', 'frozen yogurt', 'dairy desserts', 'brie', 'camembert', 'edam', 'fontina', 'gouda', 'gruyere', 'limburger', 'queso anejo', 'queso asadero', 'queso chihuahua', 'muenster',]
 
 export const badDairy = ['cream', 'sour cream', 'cream cheese', 'ice cream',]

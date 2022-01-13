@@ -9,7 +9,8 @@ import {
     Spacer,
     Center,
     IconButton,
-    Divider
+    Divider,
+    Container
 } from '@chakra-ui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 
@@ -33,12 +34,10 @@ const FoodGroup = ({ foods, groupName, headerSize, isCollapsable }) => {
     const transitionDuration = 0.15
     if (isCollapsable) {
         return (
-            <Box
-                mt={2}
-            >
+            <Box mt={1}>
                 <Flex >
                     <Center>
-                        <Box ml={1}>
+                        <Box>
                             <Heading size={headerSize}
                                 as={headerSize === 'md' ? 'h4' : 'h5'}
                                 fontWeight={headerSize === 'md' ? '700' : '600'}>{groupName}</Heading>
@@ -50,18 +49,23 @@ const FoodGroup = ({ foods, groupName, headerSize, isCollapsable }) => {
                         Show {show ? 'Less' : 'All'}
                     </Button>
                 </Flex>
-                <Collapse
-                    transition={{ enter: { duration: transitionDuration }, exit: { duration: transitionDuration } }}
-                    startingHeight={72} in={show}
-                >
-                    <Box ml={1}>
-                        <CheckboxGroup >
-                            {foods.map(food => <FoodCheckBox food={food} />)}
-                        </CheckboxGroup>
-                    </Box>
-                </Collapse>
+                {/* Put Collapse in a Box with ml=-1 and CheckboxGroup with ml=1 to avoid checkbox clipping when collapse is not expanded */}
+                <Box ml={-1}>
+                    <Collapse
+                        transition={{ enter: { duration: transitionDuration }, exit: { duration: transitionDuration } }}
+                        startingHeight={95}
+                        in={show}
+
+                    >
+                        <Box ml={1}>
+                            <CheckboxGroup >
+                                {foods.map(food => <FoodCheckBox food={food} />)}
+                            </CheckboxGroup>
+                        </Box>
+                    </Collapse>
+                </Box>
                 <Center>
-                    <IconButton colorScheme='red' size='sm' w={20} onClick={handleToggle} variant='ghost' _focus={{ boxShadow: "none", }}
+                    <IconButton colorScheme='red' size='sm' w={20} h={6} onClick={handleToggle} variant='ghost' _focus={{ boxShadow: "none", }}
                         icon={show ? <ChevronUpIcon w={4} h={4} /> : <ChevronDownIcon w={4} h={4} />} >
                     </IconButton>
                 </Center>
@@ -69,16 +73,14 @@ const FoodGroup = ({ foods, groupName, headerSize, isCollapsable }) => {
         )
     } else {
         return (
-            <Box
-                mt={2}
-            >
-                <Box ml={1}>
+            <Box mt={1}>
+                <Box ml={0}>
                     <Heading
                         size={headerSize}
                         as={headerSize === 'md' ? 'h4' : 'h5'}
                         fontWeight={headerSize === 'md' ? '700' : '600'} >{groupName}</Heading>
                 </Box>
-                <Box ml={1}>
+                <Box ml={0}>
                     <CheckboxGroup >
                         {foods.map(food => <FoodCheckBox food={food} />)}
                     </CheckboxGroup>
@@ -95,8 +97,8 @@ FoodGroup.defaultProps = {
 
 export const FoodSelect = () => {
     return (
-        <Box bg='white'>
-            <Heading as='h4' size='md' mt={2} ml={1}>Vegetables</Heading>
+        <Container maxW='container.md' h='92vh' overflowY='scroll'>
+            <Heading as='h4' size='md' mt={2} ml={0}>Vegetables</Heading>
             {veg.map(foodGroup =>
                 <FoodGroup foods={foodGroup.foods} groupName={foodGroup.name} headerSize={'sm'} />
             )}
@@ -105,7 +107,7 @@ export const FoodSelect = () => {
             <FoodGroup foods={fruit} groupName="Fruits" />
             <Divider mt={2} />
 
-            <Heading as='h4' size='md' mt={2} ml={1}>Grains</Heading>
+            <Heading as='h4' size='md' mt={2} ml={0}>Grains</Heading>
             <FoodGroup foods={whole} groupName="Whole Grains" headerSize={'sm'} />
             <FoodGroup foods={refined} groupName="Refined Grains" headerSize={'sm'} isCollapsable={false} />
             <Divider mt={2} />
@@ -113,10 +115,10 @@ export const FoodSelect = () => {
             <FoodGroup foods={dairy} groupName="Dairy" />
             <Divider mt={2} />
 
-            <Heading as='h4' size='md' mt={2} ml={1}>Protein</Heading>
+            <Heading as='h4' size='md' mt={2} ml={0}>Protein</Heading>
             {protein.map(group =>
                 <FoodGroup foods={group.foods} groupName={group.name} headerSize={'sm'} />
             )}
-        </Box >
+        </Container >
     )
 }

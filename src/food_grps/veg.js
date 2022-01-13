@@ -1,17 +1,17 @@
 export const green = [
-    'bok choy', 'broccoli', 'chard', 'cilantro', 'kale', 'romaine lettuce', 'leaf lettuce', 'spinach', 'basil', 'amaranth leaves', 'beet greens', 'bitter melon leaves', 'chamnamul', 'chrysanthemum leaves', 'collards', 'cress', 'dandelion greens', 'lambsquarters', 'mustard greens', 'poke greens', 'nettles', 'taro leaves', 'turnip greens', 'watercress']
+    'basil', 'bok choy', 'broccoli', 'chard', 'cilantro', 'collard greens', 'kale', 'romaine lettuce', 'leaf lettuce', 'mustard greens', 'spinach', 'amaranth leaves', 'beet greens', 'bitter melon leaves', 'chamnamul', 'chrysanthemum leaves', 'cress', 'dandelion greens', 'lambsquarters', 'poke greens', 'nettles', 'taro leaves', 'turnip greens', 'watercress']
 
 export const red = [
     'carrots', 'red chili peppers', 'red bell peppers', 'orange bell peppers', 'sweet potatoes', 'tomatoes', 'tomato juice', 'winter squash', 'acorn squash', 'butternut squash', 'kabocha squash', 'pumpkin squash', 'calabaza', 'pimiento',]
 
 export const bean = [
-    'black beans', 'black-eyed peas', 'bayo beans', 'brown beans', 'chickpeas / garbanzo beans', 'cowpeas', 'edamame', 'fava beans', 'kidney beans', 'lentils', 'lima beans', 'mung beans', 'navy beans', 'pigeon peas', 'pink beans', 'pinto beans', 'split peas', 'soybeans', 'white beans',]
+    'black beans', 'black-eyed peas', 'chickpeas / garbanzo beans', 'kidney beans', 'lentils', 'lima beans', 'navy beans', 'pinto beans', 'soybeans', 'white beans', 'bayo beans', 'brown beans', 'cowpeas', 'edamame', 'fava beans', 'mung beans', 'pigeon peas', 'pink beans', 'split peas',]
 
-export const starchy = [
-    'breadfruit', 'burdock root', 'cassava', 'corn', 'jicama', 'lotus root', 'lima beans', 'immature peas', 'raw peas', 'immature cowpeas', 'raw cowpeas', 'imature black-eyed peas', 'raw black-eyed peas', 'imature green peas', 'raw green peas', 'imature pigeon peas', 'raw pigeon peas', 'plantains', 'white potatoes', 'salsify', 'tapioca', 'taro', 'yautia root', 'dasheen root', 'water chestnuts', 'yam', 'yucca',]
+export const starchy = ['breadfruit', 'corn', 'jicama', 'lima beans', 'plantains', 'tapioca', 'taro / dasheen / yautia root', 'white potatoes',
+    'water chestnuts', 'yams', 'cassava / manioc / yuca', 'burdock root', 'lotus root', 'immature peas', 'raw peas', 'immature cowpeas', 'raw cowpeas', 'imature black-eyed peas', 'raw black-eyed peas', 'imature green peas', 'raw green peas', 'imature pigeon peas', 'raw pigeon peas', 'salsify',]
 
 export const other = [
-    'artichoke', 'asparagus', 'avocado', 'bamboo shoots', 'bean sprouts', 'beets', 'bitter melon', 'bitter gourd', 'balsam pear', 'broccoflower', 'Brussels sprouts', 'cabbage', 'green cabbage', 'red cabbage', 'napa cabbage', 'savoy cabbage', 'cactus pads', 'nopales', 'cauliflower', 'celeriac', 'celery', 'chayote', 'mirliton', 'chives', 'cucumber', 'eggplant', 'fennel bulb', 'garlic', 'ginger root', 'green beans', 'iceberg lettuce', 'kohlrabi', 'leeks', 'luffa', 'Chinese okra', 'mushrooms', 'okra', 'onions', 'green peppers', 'green bell peppers', 'green chilis', 'jalapeno', 'serrano', 'radicchio', 'sprouted beans', 'sprouted mung beans', 'radish', 'rutabaga', 'seaweed', 'snow peas', 'summer squash', 'tomatillos', 'turnips', 'winter melons',]
+    'artichoke', 'asparagus', 'avocado', 'bean sprouts', 'beets', 'Brussels sprouts', 'cabbage', 'cauliflower', 'celery', 'chives', 'cucumber', 'eggplant', 'garlic', 'ginger', 'green beans', 'iceberg lettuce', 'leeks', 'mushrooms', 'okra', 'onions', 'green bell peppers', 'green chilis', 'radish', 'snow peas', 'summer squash', 'tomatillos', 'turnips', 'bamboo shoots', 'bitter melon', 'bitter gourd', 'balsam pear', 'broccoflower', 'cactus pads / nopales', 'celeriac', 'chayote', 'mirliton', 'fennel bulb', 'kohlrabi', 'luffa', 'Chinese okra', 'radicchio', 'sprouted beans', 'sprouted mung beans', 'rutabaga', 'seaweed', 'winter melons',]
 
 export const veg = [
     {
