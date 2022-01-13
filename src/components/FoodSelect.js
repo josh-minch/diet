@@ -22,7 +22,7 @@ const FoodGroup = ({ foods, groupName, headerSize }) => {
             mt={2}
             p={2}
             pt={1}
-            boxShadow='base'
+            boxShadow='md'
             rounded='md'
             bg='white'
         >
