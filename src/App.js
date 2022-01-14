@@ -14,7 +14,7 @@ function App() {
         <Header />
         <SimpleGrid mt={4} columns={[1, null, 3]} spacing='20px'>
           <FoodSelect />
-          <CalorieForm />
+
         </SimpleGrid>
       </Box>
     </ChakraProvider >
