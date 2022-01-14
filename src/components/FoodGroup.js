@@ -13,9 +13,7 @@ import {
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 
 
-
 const FoodCheckBoxGroup = ({ foods }) => {
-
     return (
         <CheckboxGroup >
             {foods.map((food, id) =>
@@ -28,9 +26,13 @@ const FoodCheckBoxGroup = ({ foods }) => {
 
 const FoodSelectHeader = ({ headerSize, groupName }) => {
     return (
-        <Heading size={headerSize}
+        <Heading
+            mb={1}
+            size={headerSize}
             as={headerSize === 'md' ? 'h4' : 'h5'}
-            fontWeight={headerSize === 'md' ? '700' : '600'}>{groupName}</Heading>
+            fontWeight={headerSize === 'md' ? '700' : '600'}>
+            {groupName}
+        </Heading >
     )
 }
 
@@ -41,20 +43,11 @@ export const FoodGroup = ({ foods, groupName, headerSize, isCollapsable, image }
 
     let content;
 
-    if (!isCollapsable) {
-        content =
-            <Box mt={1}>
-                <FoodSelectHeader headerSize={headerSize} groupName={groupName} />
-                <FoodCheckBoxGroup foods={foods} />
-            </Box >
-    }
     if (isCollapsable) {
         content =
             <Box mt={1}>
-                <Flex >
-                    <Center>
-                        <FoodSelectHeader headerSize={headerSize} groupName={groupName} />
-                    </Center>
+                <Flex alignItems={'end'}>
+                    <FoodSelectHeader headerSize={headerSize} groupName={groupName} />
                     <Spacer />
                     <Button colorScheme='red' size='sm' onClick={handleToggle} pr={1} variant='ghost'
                         rightIcon={show ? <ChevronUpIcon w={4} h={4} /> : <ChevronDownIcon w={4} h={4} />} >
@@ -80,6 +73,14 @@ export const FoodGroup = ({ foods, groupName, headerSize, isCollapsable, image }
                 </Center>
             </Box >
     }
+    if (!isCollapsable) {
+        content =
+            <Box mt={1}>
+                <FoodSelectHeader headerSize={headerSize} groupName={groupName} />
+                <FoodCheckBoxGroup foods={foods} />
+            </Box >
+    }
+
     return content
 }
 
