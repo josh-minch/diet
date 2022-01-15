@@ -5,7 +5,8 @@ import { ActivityForm } from './ActivityForm';
 import {
     Stack,
     Text,
-    ChakraProvider, Heading, Container
+    Heading,
+    Container
 } from '@chakra-ui/react';
 
 

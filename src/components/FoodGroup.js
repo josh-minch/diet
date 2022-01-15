@@ -11,16 +11,34 @@ import {
     IconButton,
 } from '@chakra-ui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
+import { foodIds } from '../food_grps/foodIds'
 
+const FoodCheckBox = React.memo(({ food, foodCheckedState, onFoodChecked }) => {
+    return (
+        <Checkbox
+            h={8} spacing={1} mr={3}
+            key={foodIds[food]}
+            value={food}
+            checked={foodCheckedState}
+            onChange={onFoodChecked}
+        >
+            {food}
+        </Checkbox>
+    )
+})
 
-const FoodCheckBoxGroup = ({ foods }) => {
+const FoodCheckBoxGroup = ({ foods, checkedState, onFoodChecked }) => {
     return (
         <CheckboxGroup >
-            {foods.map((food, id) =>
-                <Checkbox key={id} h={8} spacing={1} mr={3}>
-                    {food}
-                </Checkbox>)}
-        </CheckboxGroup>
+            {foods.map(food =>
+                <FoodCheckBox
+                    food={food}
+                    foodCheckedState={checkedState[foodIds[food]]}
+                    onFoodChecked={onFoodChecked}
+                    key={foodIds[food]}
+                />
+            )}
+        </CheckboxGroup >
     )
 }
 
@@ -36,7 +54,7 @@ const FoodSelectHeader = ({ headerSize, groupName }) => {
     )
 }
 
-export const FoodGroup = ({ foods, groupName, headerSize, isCollapsable, image }) => {
+export const FoodGroup = ({ foods, groupName, headerSize, isCollapsable, checkedState, onFoodChecked }) => {
     const [show, setShow] = React.useState(false)
     const handleToggle = () => setShow(!show)
     const transitionDuration = 0.15
@@ -62,7 +80,7 @@ export const FoodGroup = ({ foods, groupName, headerSize, isCollapsable, image }
                         in={show}
                     >
                         <Box ml={1}>
-                            <FoodCheckBoxGroup foods={foods} />
+                            <FoodCheckBoxGroup foods={foods} checkedState={checkedState} onFoodChecked={onFoodChecked} />
                         </Box>
                     </Collapse>
                 </Box>
@@ -77,7 +95,7 @@ export const FoodGroup = ({ foods, groupName, headerSize, isCollapsable, image }
         content =
             <Box mt={1}>
                 <FoodSelectHeader headerSize={headerSize} groupName={groupName} />
-                <FoodCheckBoxGroup foods={foods} />
+                <FoodCheckBoxGroup foods={foods} checkedState={checkedState} onFoodChecked={onFoodChecked} />
             </Box >
     }
 

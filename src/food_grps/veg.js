@@ -7,8 +7,8 @@ export const red = [
 export const bean = [
     'black beans', 'black-eyed peas', 'chickpeas / garbanzo beans', 'kidney beans', 'lentils', 'lima beans', 'navy beans', 'pinto beans', 'soybeans', 'white beans', 'bayo beans', 'brown beans', 'cowpeas', 'edamame', 'fava beans', 'mung beans', 'pigeon peas', 'pink beans', 'split peas',]
 
-export const starchy = ['breadfruit', 'corn', 'jicama', 'lima beans', 'plantains', 'tapioca', 'taro / dasheen / yautia root', 'white potatoes',
-    'water chestnuts', 'yams', 'cassava / manioc / yuca', 'burdock root', 'lotus root', 'immature peas', 'raw peas', 'immature cowpeas', 'raw cowpeas', 'imature black-eyed peas', 'raw black-eyed peas', 'imature green peas', 'raw green peas', 'imature pigeon peas', 'raw pigeon peas', 'salsify',]
+export const starchy = ['breadfruit', 'corn', 'jicama', 'lima beans', 'plantains', 'tapioca', 'white potatoes',
+    'water chestnuts', 'yams', 'cassava / manioc / yuca', 'burdock root', 'lotus root', 'taro / dasheen / yautia root', 'immature peas', 'raw peas', 'immature cowpeas', 'raw cowpeas', 'imature black-eyed peas', 'raw black-eyed peas', 'imature green peas', 'raw green peas', 'imature pigeon peas', 'raw pigeon peas', 'salsify',]
 
 export const other = [
     'artichoke', 'asparagus', 'avocado', 'bean sprouts', 'beets', 'Brussels sprouts', 'cabbage', 'cauliflower', 'celery', 'chives', 'cucumber', 'eggplant', 'garlic', 'ginger', 'green beans', 'iceberg lettuce', 'leeks', 'mushrooms', 'okra', 'onions', 'green bell peppers', 'green chilis', 'radish', 'snow peas', 'summer squash', 'tomatillos', 'turnips', 'bamboo shoots', 'bitter melon', 'bitter gourd', 'balsam pear', 'broccoflower', 'cactus pads / nopales', 'celeriac', 'chayote', 'mirliton', 'fennel bulb', 'kohlrabi', 'luffa', 'Chinese okra', 'radicchio', 'sprouted beans', 'sprouted mung beans', 'rutabaga', 'seaweed', 'winter melons',]
