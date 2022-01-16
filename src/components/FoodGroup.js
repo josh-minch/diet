@@ -27,7 +27,7 @@ const FoodCheckBox = React.memo(({ food, foodCheckedState, onFoodChecked }) => {
     )
 })
 
-const FoodCheckBoxGroup = ({ foods, checkedState, onFoodChecked }) => {
+const CheckBoxGroup = ({ foods, checkedState, onFoodChecked }) => {
     return (
         <CheckboxGroup >
             {foods.map(food =>
@@ -80,7 +80,7 @@ export const FoodGroup = ({ foods, groupName, headerSize, isCollapsable, checked
                         in={show}
                     >
                         <Box ml={1}>
-                            <FoodCheckBoxGroup foods={foods} checkedState={checkedState} onFoodChecked={onFoodChecked} />
+                            <CheckBoxGroup foods={foods} checkedState={checkedState} onFoodChecked={onFoodChecked} />
                         </Box>
                     </Collapse>
                 </Box>
@@ -95,7 +95,7 @@ export const FoodGroup = ({ foods, groupName, headerSize, isCollapsable, checked
         content =
             <Box mt={1}>
                 <FoodSelectHeader headerSize={headerSize} groupName={groupName} />
-                <FoodCheckBoxGroup foods={foods} checkedState={checkedState} onFoodChecked={onFoodChecked} />
+                <CheckBoxGroup foods={foods} checkedState={checkedState} onFoodChecked={onFoodChecked} />
             </Box >
     }
 
