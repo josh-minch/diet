@@ -8,7 +8,7 @@ import { FoodGroup } from './FoodGroup'
 export const GrainGroup = ({ foodCheckedState, onFoodChecked }) => {
     return (
         <>
-            <Heading as='h4' size='md' mt={2} ml={1}>Grains</Heading>
+            <Heading size='md' mt={2} ml={1}>Grains</Heading>
             <FoodGroup
                 foodGroup={'whole'}
                 foodGroupDisplayName={'Whole Grains'}
