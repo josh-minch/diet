@@ -32,6 +32,9 @@ export const FoodGroup = React.memo(({ foodGroup, foodGroupDisplayName, headingS
     const handleToggle = React.useCallback(() => setShow(show => !show), [])
     const transitionDuration = 0.15
 
+    Object.filter = (obj, predicate) =>
+        Object.fromEntries(Object.entries(obj).filter(predicate))
+
     return (
         <Box mb={0}>
             <Flex alignItems={'end'} ml={1}>
@@ -47,7 +50,7 @@ export const FoodGroup = React.memo(({ foodGroup, foodGroupDisplayName, headingS
             >
                 <Box ml={1}>
                     {
-                        foodCheckedState
+                        Object.values(foodCheckedState)
                             .filter(food => food.group === foodGroup)
                             .map(({ foodName, id, isChecked }) =>
                                 <FoodCheckBox

@@ -8,7 +8,7 @@ import { FoodGroup } from './FoodGroup'
 export const VegGroup = ({ foodCheckedState, onFoodChecked }) => {
     return (
         <>
-            <Heading as='h4' size='md' mt={2} ml={1}>Vegetables</Heading>
+            <Heading size='md' mt={2} ml={1}>Vegetables</Heading>
             <FoodGroup
                 foodGroup={'green'}
                 foodGroupDisplayName={'Dark Green Vegetables'}

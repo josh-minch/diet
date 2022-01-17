@@ -18,9 +18,12 @@ function App() {
 
     const onFoodChecked = React.useCallback((e) => {
         const checkedFoodName = e.target.value
-        setFoodCheckedState(foodState => foodState.map((food, index) =>
-            food.foodName === checkedFoodName ? { ...food, isChecked: !food.isChecked } : food
-        ))
+        setFoodCheckedState(foodState => {
+            const newFoodState = { ...foodState }
+            const oldCheckedState = newFoodState[checkedFoodName]['isChecked']
+            newFoodState[checkedFoodName]['isChecked'] = !oldCheckedState
+            return newFoodState
+        })
     }, [])
 
     return (
