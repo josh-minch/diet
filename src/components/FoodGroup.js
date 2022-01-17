@@ -13,19 +13,31 @@ import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import { FoodCheckBox } from './FoodCheckBox'
 
 
-export const FoodGroup = ({ foodGroup, foodGroupDisplayName, headingSize, foodCheckedState, onFoodChecked }) => {
+const ShowAllButton = React.memo(({ handleToggle, show }) => {
+    return <Button colorScheme='red' size='sm' onClick={handleToggle} pr={1} variant='ghost'
+        rightIcon={show ? <ChevronUpIcon w={4} h={4} /> : <ChevronDownIcon w={4} h={4} />}>
+        Show {show ? 'Less' : 'All'}
+    </Button>
+})
+
+const ShowAllIconButton = React.memo(({ handleToggle, show }) => {
+    return <IconButton colorScheme='red' size='sm' w={20} h={6} onClick={handleToggle} variant='ghost' _focus={{ boxShadow: "none", }}
+        icon={show ? <ChevronUpIcon w={4} h={4} /> : <ChevronDownIcon w={4} h={4} />}>
+    </IconButton>
+})
+
+
+export const FoodGroup = React.memo(({ foodGroup, foodGroupDisplayName, headingSize, foodCheckedState, onFoodChecked }) => {
     const [show, setShow] = React.useState(false)
-    const handleToggle = () => setShow(!show)
+    const handleToggle = React.useCallback(() => setShow(show => !show), [])
     const transitionDuration = 0.15
+
     return (
         <Box mb={0}>
             <Flex alignItems={'end'} ml={1}>
                 <Heading mb={1} size={headingSize} fontWeight={headingSize === 'sm' ? '600' : '700'}>{foodGroupDisplayName}</Heading >
                 <Spacer />
-                <Button colorScheme='red' size='sm' onClick={handleToggle} pr={1} variant='ghost'
-                    rightIcon={show ? <ChevronUpIcon w={4} h={4} /> : <ChevronDownIcon w={4} h={4} />} >
-                    Show {show ? 'Less' : 'All'}
-                </Button>
+                <ShowAllButton handleToggle={handleToggle} show={show} />
             </Flex>
             <Collapse
                 transition={{ enter: { duration: transitionDuration }, exit: { duration: transitionDuration } }}
@@ -50,13 +62,11 @@ export const FoodGroup = ({ foodGroup, foodGroupDisplayName, headingSize, foodCh
                 </Box>
             </Collapse>
             <Center>
-                <IconButton colorScheme='red' size='sm' w={20} h={6} onClick={handleToggle} variant='ghost' _focus={{ boxShadow: "none", }}
-                    icon={show ? <ChevronUpIcon w={4} h={4} /> : <ChevronDownIcon w={4} h={4} />} >
-                </IconButton>
+                <ShowAllIconButton handleToggle={handleToggle} show={show} />
             </Center>
         </Box>
     )
-}
+})
 
 FoodGroup.defaultProps = {
     headingSize: 'sm'
