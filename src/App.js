@@ -3,8 +3,6 @@ import {
     ChakraProvider,
     Box,
     SimpleGrid,
-    Heading,
-    Divider
 } from '@chakra-ui/react';
 import { VegGroup } from './components/VegGroup';
 import { FruitGroup } from './components/FruitGroup';
