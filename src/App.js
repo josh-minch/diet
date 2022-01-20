@@ -3,18 +3,32 @@ import {
     ChakraProvider,
     Box,
     SimpleGrid,
+
 } from '@chakra-ui/react';
+import { nanoid } from 'nanoid';
+
 import { VegGroup } from './components/VegGroup';
 import { FruitGroup } from './components/FruitGroup';
 import { GrainGroup } from './components/GrainGroup';
 import { ProteinGroup } from './components/ProteinGroup';
+import { Log } from './components/Log';
 
-import { foodData } from './foodData/foodData'
-
+import { foodData } from './foodData/foodData';
 
 function App() {
-
     const [foodCheckedState, setFoodCheckedState] = React.useState(foodData)
+    const [myFoodState, setMyFoodState] = React.useState([])
+
+    const createFoodItem = (name, group, quantity = 1, unit = 'cup') => {
+        return {
+            name: name,
+            group: group,
+            quantity: quantity,
+            unit: unit,
+            servings: quantity,
+            id: nanoid()
+        }
+    }
 
     const onFoodChecked = React.useCallback((e) => {
         const checkedFoodName = e.target.value
@@ -24,7 +38,14 @@ function App() {
             newFoodState[checkedFoodName]['isChecked'] = !oldCheckedState
             return newFoodState
         })
+
+        const myFoodItem = createFoodItem(checkedFoodName, foodData[checkedFoodName].group)
+        setMyFoodState(myFoodState => e.target.checked ?
+            myFoodState.concat(myFoodItem) :
+            myFoodState.filter(food => food.name !== checkedFoodName))
     }, [])
+
+
 
     return (
         < ChakraProvider >
@@ -35,6 +56,7 @@ function App() {
                     <GrainGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
                     <ProteinGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
                 </Box>
+                < Log myFoodState={myFoodState} />
             </SimpleGrid>
         </ChakraProvider >
     );
