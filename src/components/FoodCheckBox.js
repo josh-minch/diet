@@ -3,7 +3,9 @@ import { Checkbox } from "@chakra-ui/react"
 export const FoodCheckBox = React.memo(({ foodName, id, isChecked, onFoodChecked }) => {
     return (
         <Checkbox
-            h={8} spacing={1} mr={3}
+            spacing={1}
+            mr={3}
+            mb='8px'
             value={foodName}
             id={id}
             isChecked={isChecked}
