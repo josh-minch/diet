@@ -25,14 +25,14 @@ export const FoodItem = ({ food, setMyFoodState }) => {
 
     const decrementQuantity = (foodId) => {
         setMyFoodState((myFoodState) => {
-            return myFoodState.map(food => food.id === foodId ? { ...food, quantity: food.quantity - stepSize } : food)
+            return myFoodState.map(food => food.id === foodId ? { ...food, quantity: Number(food.quantity) - stepSize } : food)
         })
     }
 
 
     const incrementQuantity = (foodId) => {
         setMyFoodState((myFoodState) => {
-            return myFoodState.map(food => food.id === foodId ? { ...food, quantity: food.quantity + stepSize } : food)
+            return myFoodState.map(food => food.id === foodId ? { ...food, quantity: Number(food.quantity) + stepSize } : food)
         })
     }
 
@@ -46,7 +46,7 @@ export const FoodItem = ({ food, setMyFoodState }) => {
                 <ButtonGroup isAttached>
                     <IconButton icon={< MinusIcon boxSize={3} />} isDisabled={food.quantity <= minQuantity} variant='outline' onClick={() => decrementQuantity(food.id)} />
                     <NumberInput
-                        onChange={newQuantity => onFoodQuantityChanged(food.id, Number(newQuantity))}
+                        onChange={newQuantity => onFoodQuantityChanged(food.id, newQuantity)}
                         value={food.quantity}
                         id={food.id}
                         min={minQuantity}
