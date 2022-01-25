@@ -23,7 +23,7 @@ const Req = ({ myFoodStateFoodGroup, foodGroupReq }) => {
     return (
         <>
             <Heading size='sm'>{foodGroupReq.group}</Heading>
-            <Text>{totalFoodGroupQuantity} / {foodGroupReq.req}</Text>
+            <Text>{totalFoodGroupQuantity} of {Math.round(foodGroupReq.req * 100) / 100}</Text>
         </>
     )
 };
@@ -49,15 +49,6 @@ export const Log = ({ myFoodState, setMyFoodState }) => {
                         const myFoodStateFoodGroup = myFoodState.filter(food => food.group === r.group)
                         return <Req key={r.group} myFoodStateFoodGroup={myFoodStateFoodGroup} foodGroupReq={r} />
                     })}
-
-                    {/* {myFoodState
-                        .filter(food => food.group === 'green')
-                        .map(food => food.quantity)
-                        .reduce(
-                            (prev, cur) => prev + cur,
-                            0
-                        )
-                    } */}
                 </Box>
             </Stack>
         </>

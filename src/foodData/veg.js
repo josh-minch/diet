@@ -2,7 +2,7 @@ export const green = [
     'basil', 'bok choy', 'broccoli', 'chard', 'cilantro', 'collard greens', 'kale', 'romaine lettuce', 'leaf lettuce', 'mustard greens', 'spinach', 'amaranth leaves', 'beet greens', 'bitter melon leaves', 'chamnamul', 'chrysanthemum leaves', 'cress', 'dandelion greens', 'lambsquarters', 'poke greens', 'nettles', 'taro leaves', 'turnip greens', 'watercress']
 
 export const red = [
-    'carrots', 'red chili peppers', 'red bell peppers', 'orange bell peppers', 'sweet potatoes', 'tomatoes', 'tomato juice', 'winter squash', 'acorn squash', 'butternut squash', 'kabocha squash', 'pumpkin squash', 'calabaza', 'pimiento',]
+    'carrots', 'red chili peppers', 'red bell peppers', 'orange bell peppers', 'sweet potatoes', 'tomatoes', 'sun-dried tomatoes', 'tomato juice', 'winter squash', 'acorn squash', 'butternut squash', 'kabocha squash', 'pumpkin squash', 'calabaza', 'pimiento',]
 
 export const bean = [
     'black beans', 'black-eyed peas', 'chickpeas / garbanzo beans', 'kidney beans', 'lentils', 'lima beans', 'navy beans', 'pinto beans', 'soybeans', 'white beans', 'bayo beans', 'brown beans', 'cowpeas', 'edamame', 'fava beans', 'mung beans', 'pigeon peas', 'pink beans', 'split peas',]
