@@ -3,7 +3,14 @@ import {
     ChakraProvider,
     Box,
     SimpleGrid,
-
+    Tab,
+    Tabs,
+    TabList,
+    TabPanel,
+    TabPanels,
+    Container,
+    Flex,
+    Spacer
 } from '@chakra-ui/react';
 import { nanoid } from 'nanoid';
 
@@ -14,15 +21,16 @@ import { ProteinGroup } from './components/ProteinGroup';
 import { Log } from './components/Log';
 
 import { foodData } from './foodData/foodData';
+import { getServingConversionFactor } from './req/req';
 
-const createFoodItem = (name, quantity = 1, unit = 'cup') => {
+const createFoodItem = (name, unit = 'cup') => {
     return {
         name: name,
         group: foodData[name].group,
-        quantity: quantity,
+        quantity: 1 / getServingConversionFactor(name),
         unit: unit,
         servings: function () {
-            return this.quantity
+            return getServingConversionFactor(this.name) * this.quantity
         },
         id: nanoid()
     }
@@ -50,15 +58,30 @@ function App() {
 
     return (
         < ChakraProvider >
-            <SimpleGrid columns={[1, null, 3]}>
-                <Box ml={1} maxW='400px' h='92vh' overflowY='scroll'>
-                    <VegGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
-                    <FruitGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
-                    <GrainGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
-                    <ProteinGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
-                </Box>
-                < Log myFoodState={myFoodState} setMyFoodState={setMyFoodState} />
-            </SimpleGrid>
+            <Tabs defaultIndex={0} variant='soft-rounded' colorScheme='red' isFitted >
+                <TabPanels h='93vh' overflow="scroll">
+                    <TabPanel >
+                        <VegGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
+                        <FruitGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
+                        <GrainGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
+                        <ProteinGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
+                    </TabPanel>
+                    <TabPanel >
+                        < Log myFoodState={myFoodState} setMyFoodState={setMyFoodState} />
+                    </TabPanel>
+                    <TabPanel>
+                        <p>Recipes</p>
+                    </TabPanel>
+                </TabPanels>
+
+                <TabList borderTop='1px' borderTopColor='gray.300' h='7vh' w="100vw" position="fixed" bottom="0px" backgroundColor="white" outline='0'  >
+                    <Tab _focus={{ boxShadow: "none", }}>Add food</Tab>
+                    <Tab _focus={{ boxShadow: "none", }}>Log</Tab>
+                    <Tab _focus={{ boxShadow: "none", }}>Recipes</Tab>
+                </TabList>
+
+            </Tabs >
+
         </ChakraProvider >
     );
 }

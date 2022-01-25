@@ -17,7 +17,13 @@ const FoodGroupHeader = React.memo(({ headingSize, foodGroupDisplayName, handleT
         <Flex alignItems={'end'} ml={1}>
             <Heading mb={1} size={headingSize} fontWeight={headingSize === 'sm' ? '600' : '700'}>{foodGroupDisplayName}</Heading>
             <Spacer />
-            <Button colorScheme='red' size='sm' onClick={handleToggle} pr={1} variant='ghost'
+            <Button
+                colorScheme='red'
+                size='sm'
+                onClick={handleToggle}
+                pr={1}
+                variant='ghost'
+                _focus={{ boxShadow: "none", }}
                 rightIcon={show ? <ChevronUpIcon w={4} h={4} /> : <ChevronDownIcon w={4} h={4} />}>
                 Show {show ? 'Less' : 'All'}
             </Button>
