@@ -17,6 +17,7 @@ import { nanoid } from 'nanoid';
 import { VegGroup } from './components/VegGroup';
 import { FruitGroup } from './components/FruitGroup';
 import { GrainGroup } from './components/GrainGroup';
+import { DairyGroup } from './components/DairyGroup';
 import { ProteinGroup } from './components/ProteinGroup';
 import { Log } from './components/Log';
 
@@ -64,10 +65,11 @@ function App() {
                         <VegGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
                         <FruitGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
                         <GrainGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
+                        <DairyGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
                         <ProteinGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
                     </TabPanel>
                     <TabPanel >
-                        < Log myFoodState={myFoodState} setMyFoodState={setMyFoodState} />
+                        <Log myFoodState={myFoodState} setMyFoodState={setMyFoodState} />
                     </TabPanel>
                     <TabPanel>
                         <p>Recipes</p>
