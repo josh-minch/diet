@@ -26,12 +26,12 @@ export const VegGroup = ({ foodCheckedState, onFoodChecked }) => {
                 onFoodChecked={onFoodChecked} />
             <FoodGroup
                 foodGroup={'starchy'}
-                foodGroupDisplayName={'Starchy vegetables'}
+                foodGroupDisplayName={'Starchy Vegetables'}
                 foodCheckedState={foodCheckedState}
                 onFoodChecked={onFoodChecked} />
             <FoodGroup
                 foodGroup={'other'}
-                foodGroupDisplayName={'Other vegetables'}
+                foodGroupDisplayName={'Other Vegetables'}
                 foodCheckedState={foodCheckedState}
                 onFoodChecked={onFoodChecked} />
             <Divider mt={4} mb={1} />
