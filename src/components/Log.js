@@ -1,15 +1,15 @@
 import React from 'react'
 import {
     Box,
+    Divider,
     Heading,
     Spacer,
     Stack,
     Text
 } from '@chakra-ui/react'
 import { FoodItem } from './FoodItem'
-import { FoodGroup } from './FoodGroup'
 import { req } from '../req/req'
-
+import { foodGroupToDisplayName } from '../foodData/foodData'
 
 
 const Req = ({ myFoodStateFoodGroup, foodGroupReq }) => {
@@ -22,8 +22,8 @@ const Req = ({ myFoodStateFoodGroup, foodGroupReq }) => {
 
     return (
         <>
-            <Heading size='sm'>{foodGroupReq.group}</Heading>
-            <Text>{totalFoodGroupQuantity} of {Math.round(foodGroupReq.req * 100) / 100}</Text>
+            <Text fontWeight={'semibold'} size='sm'>{foodGroupToDisplayName[foodGroupReq.group]}</Text>
+            <Text mb={2}>{totalFoodGroupQuantity} of {Math.round(foodGroupReq.req * 100) / 100}</Text>
         </>
     )
 };
@@ -41,6 +41,7 @@ export const Log = ({ myFoodState, setMyFoodState }) => {
                         <FoodItem food={food} key={food.id} setMyFoodState={setMyFoodState} />)}
                 </ Box>
                 <Spacer />
+                <Divider />
                 <Box>
                     <Heading mb={2} size={'md'}>
                         Summary

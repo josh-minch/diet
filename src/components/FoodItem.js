@@ -5,12 +5,18 @@ import {
     IconButton,
     NumberInput,
     NumberInputField,
-    useNumberInput,
+    Stack,
     HStack,
+    VStack,
     Text,
-    Select
+    Select,
+    Tag,
+    Box,
+    Flex,
+    Spacer
 } from '@chakra-ui/react'
 import { AddIcon, MinusIcon } from '@chakra-ui/icons'
+import { foodGroupToDisplayName } from '../foodData/foodData'
 
 export const FoodItem = ({ food, setMyFoodState }) => {
 
@@ -36,12 +42,12 @@ export const FoodItem = ({ food, setMyFoodState }) => {
         })
     }
 
+    const foodNameText = food.name.charAt(0).toUpperCase() + food.name.slice(1)
+    const servingsText = food.servings() == 1 ? 'serving' : 'servings'
+
     return (
-        < >
-            <HStack>
-                <Heading fontWeight='semibold' size='sm'>{food.name}</Heading>
-                <Text>{food.group}</Text>
-            </HStack>
+        <Stack mb={5}>
+            <Heading fontWeight='semibold' size='sm'>{foodNameText}</Heading>
             <HStack>
                 <ButtonGroup isAttached>
                     <IconButton icon={< MinusIcon boxSize={3} />} isDisabled={food.quantity <= minQuantity} variant='outline' onClick={() => decrementQuantity(food.id)} />
@@ -55,10 +61,17 @@ export const FoodItem = ({ food, setMyFoodState }) => {
                     </NumberInput>
                     <IconButton icon={< AddIcon boxSize={3} />} variant='outline' onClick={() => incrementQuantity(food.id)} />
                 </ButtonGroup>
-
-                <Select maxW='100px' />
-                <Text>{food.servings()}</Text>
+                <Select maxW='100px'>
+                    <option value={food.unit}>{food.unit}</option>
+                </Select>
             </HStack>
-        </>
+            <Flex>
+                <Text>{`${food.servings()} ${servingsText}`}</Text>
+                <Spacer />
+                <Tag size={'md'} variant='subtle' colorScheme={'red'}>
+                    {foodGroupToDisplayName[food.group].toLowerCase()}
+                </Tag>
+            </Flex>
+        </Stack >
     )
 };
