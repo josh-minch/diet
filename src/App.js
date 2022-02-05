@@ -1,17 +1,16 @@
 import React from 'react';
 import {
     ChakraProvider,
-    Box,
-    SimpleGrid,
     Tab,
     Tabs,
     TabList,
     TabPanel,
     TabPanels,
-    Container,
-    Flex,
-    Spacer
+    VStack,
+    Text,
+    extendTheme
 } from '@chakra-ui/react';
+import { CalendarIcon, PlusSquareIcon } from '@chakra-ui/icons';
 import { nanoid } from 'nanoid';
 
 import { VegGroup } from './components/VegGroup';
@@ -37,6 +36,20 @@ const createFoodItem = (name, unit = 'cup') => {
     }
 }
 
+const theme = extendTheme({
+    textStyles: {
+        tabText: {
+            fontSize: '13px',
+            letterSpacing: '-0.2px'
+        },
+    },
+    colors: {
+        brand: {
+            100: 'rgb(214, 0, 23)',
+        }
+    }
+})
+
 function App() {
     const [foodCheckedState, setFoodCheckedState] = React.useState(foodData)
     const [myFoodState, setMyFoodState] = React.useState([])
@@ -56,11 +69,11 @@ function App() {
             myFoodState.filter(food => food.name !== checkedFoodName))
     }, [])
 
-
+    const tabHeight = '55px'
     return (
-        < ChakraProvider >
-            <Tabs defaultIndex={0} variant='soft-rounded' colorScheme='red' isFitted >
-                <TabPanels h='93vh' overflow="scroll">
+        < ChakraProvider theme={theme} >
+            <Tabs defaultIndex={0} variant='unstyled' isFitted >
+                <TabPanels h={`calc(100vh - ${tabHeight})`} overflow="scroll">
                     <TabPanel >
                         <VegGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
                         <FruitGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
@@ -76,10 +89,25 @@ function App() {
                     </TabPanel>
                 </TabPanels>
 
-                <TabList borderTop='1px' borderTopColor='gray.300' h='7vh' w="100vw" position="fixed" bottom="0px" backgroundColor="white" outline='0'  >
-                    <Tab _focus={{ boxShadow: "none", }}>Add food</Tab>
-                    <Tab _focus={{ boxShadow: "none", }}>Log</Tab>
-                    <Tab _focus={{ boxShadow: "none", }}>Recipes</Tab>
+                <TabList pt='2px' borderTop='1px' borderTopColor='gray.300' h={tabHeight} w="100vw" position="fixed" bottom="0px" backgroundColor="white" outline='0'  >
+                    <Tab color={'gray'} _selected={{ color: 'brand.100' }} _focus={{ boxShadow: "none", }}>
+                        <VStack spacing={'1px'}>
+                            <PlusSquareIcon boxSize={5} />
+                            <Text textStyle='tabText'>Add food</Text>
+                        </VStack>
+                    </Tab>
+                    <Tab color={'gray'} _selected={{ color: 'brand.100' }} _focus={{ boxShadow: "none", }}>
+                        <VStack spacing={'1px'}>
+                            <CalendarIcon boxSize={5} />
+                            <Text textStyle='tabText'>Daily Log</Text>
+                        </VStack>
+                    </Tab>
+                    <Tab color={'gray'} _selected={{ color: 'brand.100' }} _focus={{ boxShadow: "none", }}>
+                        <VStack spacing={'1px'}>
+                            <CalendarIcon boxSize={5} />
+                            <Text textStyle='tabText'>Recipes</Text>
+                        </VStack>
+                    </Tab>
                 </TabList>
 
             </Tabs >
