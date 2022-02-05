@@ -10,7 +10,8 @@ import {
     Text,
     extendTheme
 } from '@chakra-ui/react';
-import { CalendarIcon, PlusSquareIcon } from '@chakra-ui/icons';
+import { Global, css } from '@emotion/react'
+import { CalendarIcon, PlusSquareIcon, TimeIcon } from '@chakra-ui/icons';
 import { nanoid } from 'nanoid';
 
 import { VegGroup } from './components/VegGroup';
@@ -50,6 +51,21 @@ const theme = extendTheme({
     }
 })
 
+const GlobalStyles = css`
+  /*
+    https://github.com/WICG/focus-visible#2-update-your-css
+
+    This will hide the focus indicator if the element receives focus via the mouse,
+    but it will still show up on keyboard focus.
+  */
+  .js-focus-visible :focus:not(.focus-visible),
+  .js-focus-visible :focus:not(.focus-visible) + [data-focus] {
+    outline: none;
+    box-shadow: none;
+  }
+`
+
+
 function App() {
     const [foodCheckedState, setFoodCheckedState] = React.useState(foodData)
     const [myFoodState, setMyFoodState] = React.useState([])
@@ -72,6 +88,7 @@ function App() {
     const tabHeight = '55px'
     return (
         < ChakraProvider theme={theme} >
+            <Global styles={GlobalStyles} />
             <Tabs defaultIndex={0} variant='unstyled' isFitted >
                 <TabPanels h={`calc(100vh - ${tabHeight})`} overflow="scroll">
                     <TabPanel >
@@ -90,19 +107,19 @@ function App() {
                 </TabPanels>
 
                 <TabList pt='2px' borderTop='1px' borderTopColor='gray.300' h={tabHeight} w="100vw" position="fixed" bottom="0px" backgroundColor="white" outline='0'  >
-                    <Tab color={'gray'} _selected={{ color: 'brand.100' }} _focus={{ boxShadow: "none", }}>
+                    <Tab color={'gray'} _selected={{ color: 'brand.100' }} >
                         <VStack spacing={'1px'}>
                             <PlusSquareIcon boxSize={5} />
                             <Text textStyle='tabText'>Add food</Text>
                         </VStack>
                     </Tab>
-                    <Tab color={'gray'} _selected={{ color: 'brand.100' }} _focus={{ boxShadow: "none", }}>
+                    <Tab color={'gray'} _selected={{ color: 'brand.100' }} >
                         <VStack spacing={'1px'}>
-                            <CalendarIcon boxSize={5} />
+                            <TimeIcon boxSize={5} />
                             <Text textStyle='tabText'>Daily Log</Text>
                         </VStack>
                     </Tab>
-                    <Tab color={'gray'} _selected={{ color: 'brand.100' }} _focus={{ boxShadow: "none", }}>
+                    <Tab color={'gray'} _selected={{ color: 'brand.100' }} >
                         <VStack spacing={'1px'}>
                             <CalendarIcon boxSize={5} />
                             <Text textStyle='tabText'>Recipes</Text>
