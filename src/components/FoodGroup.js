@@ -19,6 +19,7 @@ const FoodGroupHeader = React.memo(({ headingSize, foodGroupDisplayName, handleT
             <Spacer />
             <Button
                 colorScheme='red'
+                color='brand.100'
                 size='sm'
                 onClick={handleToggle}
                 pr={1}
@@ -34,7 +35,7 @@ const FoodGroupHeader = React.memo(({ headingSize, foodGroupDisplayName, handleT
 const ShowAllIconButton = React.memo(({ handleToggle, show }) => {
     return (
         <Center>
-            <IconButton colorScheme='red' size='sm' w={20} h={6} onClick={handleToggle} variant='ghost' _focus={{ boxShadow: "none", }}
+            <IconButton colorScheme='red' color='brand.100' size='sm' w={20} h={8} onClick={handleToggle} variant='ghost' _focus={{ boxShadow: "none", }}
                 icon={show ? <ChevronUpIcon w={4} h={4} /> : <ChevronDownIcon w={4} h={4} />}>
             </IconButton>
         </Center>
