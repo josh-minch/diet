@@ -7,11 +7,9 @@ import {
     NumberInputField,
     Stack,
     HStack,
-    VStack,
     Text,
     Select,
     Tag,
-    Box,
     Flex,
     Spacer
 } from '@chakra-ui/react'
@@ -42,12 +40,11 @@ export const FoodItem = ({ food, setMyFoodState }) => {
         })
     }
 
-    const foodNameText = food.name.charAt(0).toUpperCase() + food.name.slice(1)
     const servingsText = food.servings() == 1 ? 'serving' : 'servings'
 
     return (
-        <Stack mb={5}>
-            <Heading fontWeight='semibold' size='sm'>{foodNameText}</Heading>
+        <Stack mb={6}>
+            <Text casing='capitalize' fontWeight='semibold' size='sm'>{food.name}</Text>
             <HStack>
                 <ButtonGroup isAttached>
                     <IconButton icon={< MinusIcon boxSize={3} />} isDisabled={food.quantity <= minQuantity} variant='outline' onClick={() => decrementQuantity(food.id)} />
