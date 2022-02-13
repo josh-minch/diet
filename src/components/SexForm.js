@@ -12,13 +12,14 @@ import { PregForm } from './PregForm'
 import { LactForm } from './LactForm'
 
 
-export const SexForm = () => {
+export const SexForm = ({ sex, setSex }) => {
+
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
         <FormControl as='fieldset'>
             <FormLabel htmlFor='sex'>Sex</FormLabel>
-            <RadioGroup id='sex'>
+            <RadioGroup onChange={setSex} value={sex} id='sex'>
                 <HStack spacing={6}>
                     <Radio value='female' onChange={onOpen}>Female</Radio>
                     <Radio value='male' onChange={onClose}>Male</Radio>

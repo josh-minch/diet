@@ -13,6 +13,7 @@ import {
 export const CalorieForm = () => {
     const [age, setAge] = React.useState('')
     const [ageUnit, setAgeUnit] = React.useState('years')
+    const [sex, setSex] = React.useState('')
     const [activity, setActivity] = React.useState('sed')
     return (
         <Container>
@@ -24,14 +25,11 @@ export const CalorieForm = () => {
             </Text>
             <Stack mt={4} spacing={4}>
                 <AgeForm age={age} ageUnit={ageUnit} setAge={setAge} setAgeUnit={setAgeUnit} />
-                <SexForm />
+                <SexForm sex={sex} setSex={setSex} />
                 <ActivityForm setActivity={setActivity} />
-                <div>
-                    {age}
-                    {ageUnit}
-                    {activity}
-                </div>
+                <Text>Your calorie needs is </Text>
             </Stack>
+
         </Container>
     );
 }
