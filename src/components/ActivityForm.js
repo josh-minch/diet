@@ -1,9 +1,9 @@
 import { FormControl, FormLabel, Select } from '@chakra-ui/react'
 import React from 'react'
 
-export const ActivityForm = ({ setActivity }) => {
+export const ActivityForm = ({ setActivityLevel }) => {
     const handleOnChange = (e) => {
-        setActivity(e.target.value)
+        setActivityLevel(e.target.value)
     }
     return (
         <FormControl>

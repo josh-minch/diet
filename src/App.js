@@ -14,6 +14,7 @@ import { Global, css } from '@emotion/react'
 import { CalendarIcon, PlusSquareIcon, TimeIcon } from '@chakra-ui/icons';
 import { nanoid } from 'nanoid';
 
+import { CalorieForm } from './components/CalorieForm';
 import { VegGroup } from './components/VegGroup';
 import { FruitGroup } from './components/FruitGroup';
 import { GrainGroup } from './components/GrainGroup';
@@ -86,6 +87,7 @@ function App() {
     }, [])
 
     const tabHeight = '55px'
+
     return (
         < ChakraProvider theme={theme} >
             <Global styles={GlobalStyles} />
@@ -99,6 +101,7 @@ function App() {
                         <ProteinGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
                     </TabPanel>
                     <TabPanel >
+                        <CalorieForm />
                         <Log myFoodState={myFoodState} setMyFoodState={setMyFoodState} />
                     </TabPanel>
                     <TabPanel>
