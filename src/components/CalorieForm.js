@@ -13,10 +13,16 @@ import { getCalNeeds } from '../req/req';
 
 
 export const CalorieForm = () => {
-    const [age, setAge] = React.useState('13')
-    const [ageUnit, setAgeUnit] = React.useState('months')
-    const [sex, setSex] = React.useState('female')
+    const [age, setAge] = React.useState('')
+    const [ageUnit, setAgeUnit] = React.useState('years')
+    const [sex, setSex] = React.useState('')
     const [activityLevel, setActivityLevel] = React.useState('sed')
+
+    let calNeeds = 2000
+    try {
+        calNeeds = getCalNeeds(sex, age, ageUnit, activityLevel)
+    } catch { }
+
     return (
         <Container>
             <Heading size='md' as='h2'>
@@ -29,7 +35,7 @@ export const CalorieForm = () => {
                 <AgeForm age={age} ageUnit={ageUnit} setAge={setAge} setAgeUnit={setAgeUnit} />
                 <SexForm sex={sex} setSex={setSex} />
                 <ActivityForm setActivityLevel={setActivityLevel} />
-                <Text>Your calorie needs is {getCalNeeds(sex, age, ageUnit, activityLevel)}</Text>
+                <Text>Your calorie needs is {calNeeds}</Text>
             </Stack>
 
         </Container>
