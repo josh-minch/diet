@@ -18,10 +18,12 @@ export const CalorieForm = () => {
     const [sex, setSex] = React.useState('')
     const [activityLevel, setActivityLevel] = React.useState('sed')
 
-    let calNeeds = 2000
+    let calNeeds
     try {
         calNeeds = getCalNeeds(sex, age, ageUnit, activityLevel)
-    } catch { }
+    } catch (RangeError) {
+        calNeeds = 'Enter your stats for estimated needs'
+    }
 
     return (
         <Container>
@@ -35,8 +37,9 @@ export const CalorieForm = () => {
                 <AgeForm age={age} ageUnit={ageUnit} setAge={setAge} setAgeUnit={setAgeUnit} />
                 <SexForm sex={sex} setSex={setSex} />
                 <ActivityForm setActivityLevel={setActivityLevel} />
-                <Text>Your calorie needs is {calNeeds}</Text>
             </Stack>
+            <Heading mt={4} size='md'>Estimated caloric needs</Heading>
+            <Text>{calNeeds}</Text>
 
         </Container>
     );

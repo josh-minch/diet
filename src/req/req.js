@@ -13,7 +13,7 @@ const getAgeRange = (age, ageUnit) => {
         throw new RangeError("Age in years must be at least 2.")
     }
     const ageRanges = ageUnit === 'years' ? ageRangesYears : ageRangesMonths
-    return ageRanges.slice().reverse().find(ageRange => ageRange < age)
+    return ageRanges.slice().reverse().find(ageRange => ageRange <= age)
 }
 
 // Activity levels of sedentary, moderately active, and active, and their corresponding index in calNeeds
