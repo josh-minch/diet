@@ -13,13 +13,19 @@ import {
 
 export const AgeForm = ({ age, ageUnit, setAge, setAgeUnit }) => {
     const [minAge, setMinAge] = React.useState(2)
+    const [maxAge, setMaxAge] = React.useState(Infinity)
 
     const handleUnitChange = e => {
         const selectedUnit = e.target.value
+        // Set minAge to between 2 and infinity for years, and 12 and 23 for months
         const minAge = selectedUnit === 'years' ? 2 : 12
-        const adjustedAge = Math.max(minAge, age)
+        const maxAge = selectedUnit === 'years' ? Infinity : 23
+
+        // Set age to within minAge and maxAge
+        const adjustedAge = age < minAge ? Math.max(minAge, age) : Math.min(maxAge, age)
 
         setMinAge(minAge)
+        setMaxAge(maxAge)
         setAge(adjustedAge)
         setAgeUnit(selectedUnit)
     }
@@ -28,7 +34,7 @@ export const AgeForm = ({ age, ageUnit, setAge, setAgeUnit }) => {
         <FormControl>
             <FormLabel htmlFor='age'>Age</FormLabel>
             <HStack spacing={2} >
-                <NumberInput value={age} onChange={setAge} min={minAge}>
+                <NumberInput value={age} onChange={setAge} min={minAge} max={maxAge}>
                     <NumberInputField id='age' />
                     <NumberInputStepper>
                         <NumberIncrementStepper />
