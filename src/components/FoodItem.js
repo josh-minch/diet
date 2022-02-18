@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-    Heading,
     ButtonGroup,
     IconButton,
     NumberInput,
@@ -40,7 +39,7 @@ export const FoodItem = ({ food, setMyFoodState }) => {
         })
     }
 
-    const servingsText = food.servings() == 1 ? 'serving' : 'servings'
+    const servingsText = food.servings() === 1 ? 'serving' : 'servings'
 
     return (
         <Stack mb={6}>
