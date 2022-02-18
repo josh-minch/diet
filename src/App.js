@@ -71,6 +71,11 @@ function App() {
     const [foodCheckedState, setFoodCheckedState] = React.useState(foodData)
     const [myFoodState, setMyFoodState] = React.useState([])
 
+    const [age, setAge] = React.useState('')
+    const [ageUnit, setAgeUnit] = React.useState('years')
+    const [sex, setSex] = React.useState('')
+    const [activityLevel, setActivityLevel] = React.useState('sed')
+
     const onFoodChecked = React.useCallback((e) => {
         const checkedFoodName = e.target.value
         setFoodCheckedState(foodState => {
@@ -92,7 +97,7 @@ function App() {
         < ChakraProvider theme={theme} >
             <Global styles={GlobalStyles} />
             <Tabs defaultIndex={0} variant='unstyled' isFitted >
-                <TabPanels h={`calc(100vh - ${tabHeight})`} overflow="scroll">
+                <TabPanels pb={tabHeight} h={`calc(100vh - ${tabHeight})`} overflow="scroll">
                     <TabPanel >
                         <VegGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
                         <FruitGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
@@ -101,7 +106,8 @@ function App() {
                         <ProteinGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
                     </TabPanel>
                     <TabPanel >
-                        <CalorieForm />
+                        <CalorieForm age={age} ageUnit={ageUnit} sex={sex} activityLevel={activityLevel}
+                            setAge={setAge} setAgeUnit={setAgeUnit} setSex={setSex} setActivityLevel={setActivityLevel} />
                         <Log myFoodState={myFoodState} setMyFoodState={setMyFoodState} />
                     </TabPanel>
                     <TabPanel>
