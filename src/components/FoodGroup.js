@@ -41,8 +41,9 @@ const ShowAllIconButton = React.memo(({ handleToggle, show }) => {
     )
 })
 
+const transitionDuration = 0.15
+
 const CollapsableFoodGroupContent = React.memo(({ foodGroup, show, foodCheckedState, onFoodChecked }) => {
-    const transitionDuration = 0.15
     return (
         <Collapse
             transition={{ enter: { duration: transitionDuration }, exit: { duration: transitionDuration } }}

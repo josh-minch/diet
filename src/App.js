@@ -94,9 +94,9 @@ function App() {
     const tabHeight = '55px'
 
     return (
-        < ChakraProvider theme={theme} >
+        <ChakraProvider theme={theme} >
             <Global styles={GlobalStyles} />
-            <Tabs defaultIndex={0} variant='unstyled' isFitted >
+            <Tabs defaultIndex={0} variant='unstyled' isFitted>
                 <TabPanels pb={tabHeight} h={`calc(100vh - ${tabHeight})`} overflow="scroll">
                     <TabPanel >
                         <VegGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
