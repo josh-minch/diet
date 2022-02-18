@@ -17,7 +17,7 @@ const getAgeRange = (age, ageUnit) => {
 }
 
 // Activity levels of sedentary, moderately active, and active, and their corresponding index in calNeeds
-const activityLevels = { 'sed': 0, 'mod': 1, 'active': 2 }
+const activityLevels = { 'sed': 0, 'mod': 1, 'act': 2 }
 
 // Map of sex, ageUnit, ageRange, and activityLevel to a calLevel.
 // Each [sex][ageUnit][ageRange] property is an array of 3 calLevels, each corresponding to a different activity level.
