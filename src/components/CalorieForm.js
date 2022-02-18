@@ -12,11 +12,8 @@ import {
 import { getCalNeeds } from '../req/req';
 
 
-export const CalorieForm = () => {
-    const [age, setAge] = React.useState('')
-    const [ageUnit, setAgeUnit] = React.useState('years')
-    const [sex, setSex] = React.useState('')
-    const [activityLevel, setActivityLevel] = React.useState('sed')
+export const CalorieForm = ({ age, ageUnit, sex, activityLevel, setAge, setAgeUnit, setSex, setActivityLevel }) => {
+
 
     let calNeeds
     try {
@@ -26,7 +23,7 @@ export const CalorieForm = () => {
     }
 
     return (
-        <Container>
+        <>
             <Heading size='md' as='h2'>
                 About You
             </Heading>
@@ -41,7 +38,7 @@ export const CalorieForm = () => {
             <Heading mt={4} size='md'>Estimated caloric needs</Heading>
             <Text>{calNeeds}</Text>
 
-        </Container>
+        </>
     );
 }
 
