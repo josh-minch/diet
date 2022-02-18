@@ -66,6 +66,7 @@ const GlobalStyles = css`
   }
 `
 
+const tabHeight = '55px'
 
 function App() {
     const [foodCheckedState, setFoodCheckedState] = React.useState(foodData)
@@ -90,8 +91,6 @@ function App() {
             myFoodState.concat(myFoodItem) :
             myFoodState.filter(food => food.name !== checkedFoodName))
     }, [])
-
-    const tabHeight = '55px'
 
     return (
         <ChakraProvider theme={theme} >
