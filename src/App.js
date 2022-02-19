@@ -8,7 +8,11 @@ import {
     TabPanels,
     VStack,
     Text,
-    extendTheme
+    extendTheme,
+    Spacer,
+    Button,
+    Flex,
+    useDisclosure,
 } from '@chakra-ui/react';
 import { Global, css } from '@emotion/react'
 import { CalendarIcon, PlusSquareIcon, TimeIcon } from '@chakra-ui/icons';
@@ -76,6 +80,9 @@ function App() {
     const [ageUnit, setAgeUnit] = React.useState('years')
     const [sex, setSex] = React.useState('')
     const [activityLevel, setActivityLevel] = React.useState('sed')
+    const [calNeeds, setCalNeeds] = React.useState(2000)
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     const onFoodChecked = React.useCallback((e) => {
         const checkedFoodName = e.target.value
@@ -96,7 +103,7 @@ function App() {
         <ChakraProvider theme={theme} >
             <Global styles={GlobalStyles} />
             <Tabs defaultIndex={0} variant='unstyled' isFitted>
-                <TabPanels pb={tabHeight} h={`calc(100vh - ${tabHeight})`} overflow="scroll">
+                <TabPanels pb={tabHeight} h={`calc(100% - ${tabHeight})`} overflow="scroll">
                     <TabPanel >
                         <VegGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
                         <FruitGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
@@ -105,9 +112,14 @@ function App() {
                         <ProteinGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
                     </TabPanel>
                     <TabPanel >
-                        <CalorieForm age={age} ageUnit={ageUnit} sex={sex} activityLevel={activityLevel}
+                        <Flex>
+                            <Text>{calNeeds}</Text>
+                            <Spacer />
+                            <Button onClick={onOpen}>Get recommendation</Button>
+                        </Flex>
+                        <CalorieForm calorieModalIsOpen={isOpen} calorieModalOnClose={onClose} calNeeds={calNeeds} setCalNeeds={setCalNeeds} age={age} ageUnit={ageUnit} sex={sex} activityLevel={activityLevel}
                             setAge={setAge} setAgeUnit={setAgeUnit} setSex={setSex} setActivityLevel={setActivityLevel} />
-                        <Log myFoodState={myFoodState} setMyFoodState={setMyFoodState} />
+                        <Log myFoodState={myFoodState} setMyFoodState={setMyFoodState} calNeeds={calNeeds} />
                     </TabPanel>
                     <TabPanel>
                         <p>Recipes</p>
