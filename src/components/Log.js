@@ -8,8 +8,8 @@ import {
     Text
 } from '@chakra-ui/react'
 import { FoodItem } from './FoodItem'
-import { req } from '../req/req'
-import { foodGroupToDisplayName } from '../foodData/foodData'
+import { getReq } from '../req/req'
+import { foodGroupToDisplayName } from '../req/req'
 
 
 const Req = ({ myFoodStateFoodGroup, foodGroupReq }) => {
@@ -29,7 +29,9 @@ const Req = ({ myFoodStateFoodGroup, foodGroupReq }) => {
 };
 
 
-export const Log = ({ myFoodState, setMyFoodState }) => {
+export const Log = ({ myFoodState, setMyFoodState, calNeeds }) => {
+    const req = getReq(calNeeds)
+    console.log(req);
     return (
         <>
             <Stack>

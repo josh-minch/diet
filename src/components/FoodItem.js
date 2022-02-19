@@ -32,7 +32,6 @@ export const FoodItem = ({ food, setMyFoodState }) => {
         })
     }
 
-
     const incrementQuantity = (foodId) => {
         setMyFoodState((myFoodState) => {
             return myFoodState.map(food => food.id === foodId ? { ...food, quantity: Number(food.quantity) + stepSize } : food)
