@@ -8,11 +8,14 @@ import {
     Spacer,
     Center,
     IconButton,
+    Wrap,
+    WrapItem
 } from '@chakra-ui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
-import { FoodCheckBox } from './FoodCheckBox'
 import { foodData } from '../foodData/foodData';
 import { AddFoodButton } from './AddFoodButton';
+
+
 
 const FoodGroupHeader = React.memo(({ headingSize, foodGroupDisplayName, handleToggle, show }) => {
     return (
@@ -44,29 +47,31 @@ const ShowAllIconButton = React.memo(({ handleToggle, show }) => {
 })
 
 const transitionDuration = 0.15
+const collapseStartingHeight = 160
 
 const CollapsableFoodGroupContent = React.memo(({ foodGroup, show, onFoodClicked }) => {
     return (
         <Collapse
             transition={{ enter: { duration: transitionDuration }, exit: { duration: transitionDuration } }}
-            startingHeight={95}
+            startingHeight={collapseStartingHeight}
             in={show}
-            ml={1}
         >
-            <Box ml={1}>
+            <Wrap mt={2}>
                 {
                     Object.values(foodData)
                         .filter(food => food.group === foodGroup)
                         .map(({ foodName, id }) =>
-                            <AddFoodButton
-                                foodName={foodName}
-                                onFoodClicked={onFoodClicked}
-                                key={id}
-                                id={id}
-                            />
+                            <WrapItem>
+                                <AddFoodButton
+                                    foodName={foodName}
+                                    onFoodClicked={onFoodClicked}
+                                    key={id}
+                                    id={id}
+                                />
+                            </WrapItem>
                         )
                 }
-            </Box>
+            </Wrap>
         </Collapse>
     )
 })
