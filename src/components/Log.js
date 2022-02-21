@@ -31,7 +31,6 @@ const Req = ({ myFoodStateFoodGroup, foodGroupReq }) => {
 
 export const Log = ({ myFoodState, setMyFoodState, calNeeds }) => {
     const req = getReq(calNeeds)
-    console.log(req);
     return (
         <>
             <Stack>

@@ -73,7 +73,7 @@ const GlobalStyles = css`
 const tabHeight = '55px'
 
 function App() {
-    const [foodCheckedState, setFoodCheckedState] = React.useState(foodData)
+    // const [foodCheckedState, setFoodCheckedState] = React.useState(foodData)
     const [myFoodState, setMyFoodState] = React.useState([])
 
     const [age, setAge] = React.useState('')
@@ -84,20 +84,26 @@ function App() {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const onFoodChecked = React.useCallback((e) => {
-        const checkedFoodName = e.target.value
-        setFoodCheckedState(foodState => {
-            const newFoodState = { ...foodState }
-            const oldCheckedState = newFoodState[checkedFoodName]['isChecked']
-            newFoodState[checkedFoodName]['isChecked'] = !oldCheckedState
-            return newFoodState
-        })
-
-        const myFoodItem = createFoodItem(checkedFoodName)
-        setMyFoodState(myFoodState => e.target.checked ?
-            myFoodState.concat(myFoodItem) :
-            myFoodState.filter(food => food.name !== checkedFoodName))
+    const onFoodClicked = React.useCallback((e, foodNameToAdd) => {
+        console.log(foodNameToAdd)
+        const foodToAdd = createFoodItem(foodNameToAdd)
+        setMyFoodState(myFoodState => myFoodState.concat(foodToAdd))
     }, [])
+
+    // const onFoodChecked = React.useCallback((e) => {
+    //     const checkedFoodName = e.target.value
+    //     setFoodCheckedState(foodState => {
+    //         const newFoodState = { ...foodState }
+    //         const oldCheckedState = newFoodState[checkedFoodName]['isChecked']
+    //         newFoodState[checkedFoodName]['isChecked'] = !oldCheckedState
+    //         return newFoodState
+    //     })
+
+    //     const myFoodItem = createFoodItem(checkedFoodName)
+    //     setMyFoodState(myFoodState => e.target.checked ?
+    //         myFoodState.concat(myFoodItem) :
+    //         myFoodState.filter(food => food.name !== checkedFoodName))
+    // }, [])
 
     return (
         <ChakraProvider theme={theme} >
@@ -105,11 +111,11 @@ function App() {
             <Tabs defaultIndex={0} variant='unstyled' isFitted>
                 <TabPanels pb={tabHeight} h={`calc(100% - ${tabHeight})`} overflow="scroll">
                     <TabPanel >
-                        <VegGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
-                        <FruitGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
-                        <GrainGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
-                        <DairyGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
-                        <ProteinGroup foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
+                        <VegGroup onFoodClicked={onFoodClicked} />
+                        <FruitGroup onFoodClicked={onFoodClicked} />
+                        <GrainGroup onFoodClicked={onFoodClicked} />
+                        <DairyGroup onFoodClicked={onFoodClicked} />
+                        <ProteinGroup onFoodClicked={onFoodClicked} />
                     </TabPanel>
                     <TabPanel >
                         <Flex>

@@ -4,7 +4,7 @@ import {
 } from '@chakra-ui/react'
 import { FoodGroup } from './FoodGroup'
 
-export const ProteinGroup = ({ foodCheckedState, onFoodChecked }) => {
+export const ProteinGroup = ({ foodCheckedState, onFoodClicked }) => {
     return (
         <>
             <Heading size='md' mt={2} ml={1}>Protein Foods</Heading>
@@ -12,17 +12,17 @@ export const ProteinGroup = ({ foodCheckedState, onFoodChecked }) => {
                 foodGroup={'meats'}
                 foodGroupDisplayName={'Meats, Poultry, and Eggs'}
                 foodCheckedState={foodCheckedState}
-                onFoodChecked={onFoodChecked} />
+                onFoodClicked={onFoodClicked} />
             <FoodGroup
                 foodGroup={'seafood'}
                 foodGroupDisplayName={'Seafood (Low in Mercury)'}
                 foodCheckedState={foodCheckedState}
-                onFoodChecked={onFoodChecked} />
+                onFoodClicked={onFoodClicked} />
             <FoodGroup
                 foodGroup={'nuts'}
                 foodGroupDisplayName={'Nuts, Seeds, and Soy Products'}
                 foodCheckedState={foodCheckedState}
-                onFoodChecked={onFoodChecked} />
+                onFoodClicked={onFoodClicked} />
         </>
     )
 }

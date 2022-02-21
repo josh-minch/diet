@@ -11,6 +11,8 @@ import {
 } from '@chakra-ui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import { FoodCheckBox } from './FoodCheckBox'
+import { foodData } from '../foodData/foodData';
+import { AddFoodButton } from './AddFoodButton';
 
 const FoodGroupHeader = React.memo(({ headingSize, foodGroupDisplayName, handleToggle, show }) => {
     return (
@@ -43,7 +45,7 @@ const ShowAllIconButton = React.memo(({ handleToggle, show }) => {
 
 const transitionDuration = 0.15
 
-const CollapsableFoodGroupContent = React.memo(({ foodGroup, show, foodCheckedState, onFoodChecked }) => {
+const CollapsableFoodGroupContent = React.memo(({ foodGroup, show, onFoodClicked }) => {
     return (
         <Collapse
             transition={{ enter: { duration: transitionDuration }, exit: { duration: transitionDuration } }}
@@ -53,13 +55,12 @@ const CollapsableFoodGroupContent = React.memo(({ foodGroup, show, foodCheckedSt
         >
             <Box ml={1}>
                 {
-                    Object.values(foodCheckedState)
+                    Object.values(foodData)
                         .filter(food => food.group === foodGroup)
-                        .map(({ foodName, id, isChecked }) =>
-                            <FoodCheckBox
+                        .map(({ foodName, id }) =>
+                            <AddFoodButton
                                 foodName={foodName}
-                                ischecked={isChecked}
-                                onFoodChecked={onFoodChecked}
+                                onFoodClicked={onFoodClicked}
                                 key={id}
                                 id={id}
                             />
@@ -70,14 +71,14 @@ const CollapsableFoodGroupContent = React.memo(({ foodGroup, show, foodCheckedSt
     )
 })
 
-export const FoodGroup = React.memo(({ foodGroup, foodGroupDisplayName, headingSize, foodCheckedState, onFoodChecked }) => {
+export const FoodGroup = React.memo(({ foodGroup, foodGroupDisplayName, headingSize, foodCheckedState, onFoodClicked }) => {
     const [show, setShow] = React.useState(false)
     const handleToggle = React.useCallback(() => setShow(show => !show), [])
 
     return (
         <Box mb={0}>
             <FoodGroupHeader headingSize={headingSize} foodGroupDisplayName={foodGroupDisplayName} handleToggle={handleToggle} show={show} />
-            <CollapsableFoodGroupContent foodGroup={foodGroup} show={show} foodCheckedState={foodCheckedState} onFoodChecked={onFoodChecked} />
+            <CollapsableFoodGroupContent foodGroup={foodGroup} show={show} foodCheckedState={foodCheckedState} onFoodClicked={onFoodClicked} />
             <ShowAllIconButton handleToggle={handleToggle} show={show} />
         </Box>
     )
