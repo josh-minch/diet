@@ -136,7 +136,7 @@ const us = {
 const req_all_food_groups_us = [2.5 / 7, 7 / 7, 2.5 / 7, 7 / 7, 5.5 / 7, 2, 4.5, 4.5, 3, 31 / 7, 10 / 7, 5 / 7]
 
 const foodGroups = ['veg', 'green', 'red', 'bean', 'starchy', 'other', 'fruit', 'grains', 'whole', 'refined', 'dairy', 'protein', 'meats', 'seafood', 'nuts', 'oils', 'discret', 'discretPercent']
-const displayNames = ['Vegtables', 'Dark Green Vegetables', 'Red and Orange Vegetables', 'Beans, Peas, and Lentils', 'Starchy Vegetables', 'Other Vegetables',
+const displayNames = ['Vegetables', 'Dark Green Vegetables', 'Red and Orange Vegetables', 'Beans, Peas, and Lentils', 'Starchy Vegetables', 'Other Vegetables',
     'Fruit', 'Grains', 'Whole Grains', 'Refined Grains', 'Dairy', 'Protein Foods', 'Meats, Poultry, and Eggs', 'Seafood (Low in Mercury)', 'Nuts, Seeds, and Soy Products', 'Oils', 'Limit on Calories for Other Uses', 'Limit on Calories for Other Uses (%)']
 export const foodGroupToDisplayName = {}
 foodGroups.forEach((group, i) => foodGroupToDisplayName[group] = displayNames[i])
