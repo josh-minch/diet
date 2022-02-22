@@ -1,13 +1,14 @@
 import React from 'react'
 import {
     Heading,
-    Divider
+    Divider,
+    Box
 } from '@chakra-ui/react'
 import { FoodGroup } from './FoodGroup'
 
-export const VegGroup = ({ foodCheckedState, onFoodClicked }) => {
+export const VegGroup = React.memo(({ foodCheckedState, onFoodClicked }) => {
     return (
-        <>
+        <Box>
             <Heading size='md' mt={2} ml={1}>Vegetables</Heading>
             <FoodGroup
                 foodGroup={'green'}
@@ -35,6 +36,6 @@ export const VegGroup = ({ foodCheckedState, onFoodClicked }) => {
                 foodCheckedState={foodCheckedState}
                 onFoodClicked={onFoodClicked} />
             <Divider mt={4} mb={1} />
-        </>
+        </Box>
     )
-}
+})

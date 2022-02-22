@@ -19,7 +19,6 @@ for (let i = 0; i < foodGroups.length; i++) {
         foodData[foodName] = {
             foodName: foodName,
             id: id++,
-            isChecked: false,
             group: foodGroups[i]
         }
     }

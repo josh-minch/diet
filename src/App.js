@@ -16,7 +16,6 @@ import {
 } from '@chakra-ui/react';
 import { Global, css } from '@emotion/react'
 import { CalendarIcon, PlusSquareIcon, TimeIcon } from '@chakra-ui/icons';
-import { nanoid } from 'nanoid';
 
 import { CalorieForm } from './components/CalorieForm';
 import { VegGroup } from './components/VegGroup';
@@ -26,21 +25,7 @@ import { DairyGroup } from './components/DairyGroup';
 import { ProteinGroup } from './components/ProteinGroup';
 import { Log } from './components/Log';
 
-import { foodData } from './foodData/foodData';
-import { getServingConversionFactor } from './req/req';
 
-const createFoodItem = (name, unit = 'cup') => {
-    return {
-        name: name,
-        group: foodData[name].group,
-        quantity: 1 / getServingConversionFactor(name),
-        unit: unit,
-        servings: function () {
-            return getServingConversionFactor(this.name) * this.quantity
-        },
-        id: nanoid()
-    }
-}
 
 const theme = extendTheme({
     textStyles: {
@@ -85,11 +70,11 @@ function App() {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const onFoodClicked = React.useCallback((e, foodNameToAdd) => {
-        console.log(foodNameToAdd)
-        const foodToAdd = createFoodItem(foodNameToAdd)
-        setMyFoodState(myFoodState => myFoodState.concat(foodToAdd))
-    }, [])
+    // const onFoodClicked = React.useCallback((e) => {
+    //     console.log(e.target.foodname)
+    //     // const foodToAdd = createFoodItem(e.target.foodname)
+    //     // setMyFoodState(myFoodState => myFoodState.concat(foodToAdd))
+    // }, [])
 
     // const onFoodChecked = React.useCallback((e) => {
     //     const checkedFoodName = e.target.value
@@ -112,11 +97,11 @@ function App() {
             <Tabs defaultIndex={0} variant='unstyled' isFitted>
                 <TabPanels pb={tabHeight} h={`calc(100% - ${tabHeight})`} overflow="scroll">
                     <TabPanel >
-                        <VegGroup onFoodClicked={onFoodClicked} />
-                        <FruitGroup onFoodClicked={onFoodClicked} />
-                        <GrainGroup onFoodClicked={onFoodClicked} />
-                        <DairyGroup onFoodClicked={onFoodClicked} />
-                        <ProteinGroup onFoodClicked={onFoodClicked} />
+                        <VegGroup onFoodClicked={setMyFoodState} />
+                        <FruitGroup onFoodClicked={setMyFoodState} />
+                        <GrainGroup onFoodClicked={setMyFoodState} />
+                        <DairyGroup onFoodClicked={setMyFoodState} />
+                        <ProteinGroup onFoodClicked={setMyFoodState} />
                     </TabPanel>
                     <TabPanel >
                         <Flex>

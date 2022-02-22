@@ -61,14 +61,12 @@ const CollapsableFoodGroupContent = React.memo(({ foodGroup, show, onFoodClicked
                     Object.values(foodData)
                         .filter(food => food.group === foodGroup)
                         .map(({ foodName, id }) =>
-                            <WrapItem>
-                                <AddFoodButton
-                                    foodName={foodName}
-                                    onFoodClicked={onFoodClicked}
-                                    key={id}
-                                    id={id}
-                                />
-                            </WrapItem>
+                            <AddFoodButton
+                                foodName={foodName}
+                                onFoodClicked={onFoodClicked}
+                                id={id}
+                                key={id}
+                            />
                         )
                 }
             </Wrap>
@@ -76,14 +74,14 @@ const CollapsableFoodGroupContent = React.memo(({ foodGroup, show, onFoodClicked
     )
 })
 
-export const FoodGroup = React.memo(({ foodGroup, foodGroupDisplayName, headingSize, foodCheckedState, onFoodClicked }) => {
+export const FoodGroup = React.memo(({ foodGroup, foodGroupDisplayName, headingSize, onFoodClicked }) => {
     const [show, setShow] = React.useState(false)
     const handleToggle = React.useCallback(() => setShow(show => !show), [])
 
     return (
         <Box mb={0}>
             <FoodGroupHeader headingSize={headingSize} foodGroupDisplayName={foodGroupDisplayName} handleToggle={handleToggle} show={show} />
-            <CollapsableFoodGroupContent foodGroup={foodGroup} show={show} foodCheckedState={foodCheckedState} onFoodClicked={onFoodClicked} />
+            <CollapsableFoodGroupContent foodGroup={foodGroup} show={show} onFoodClicked={onFoodClicked} />
             <ShowAllIconButton handleToggle={handleToggle} show={show} />
         </Box>
     )
