@@ -1,24 +1,14 @@
 import React from 'react'
 import {
     Button,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    useDisclosure,
-    Box,
+
     Popover,
     PopoverTrigger,
     PopoverContent,
     PopoverHeader,
     PopoverBody,
-    PopoverFooter,
     PopoverArrow,
     PopoverCloseButton,
-    PopoverAnchor,
 } from '@chakra-ui/react'
 import { nanoid } from 'nanoid';
 
