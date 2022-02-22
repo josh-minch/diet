@@ -34,7 +34,8 @@ export const AddFoodButton = ({ foodName, setMyFoodState }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const onClick = React.useCallback(() => {
         setMyFoodState(myFoodState => myFoodState.concat(createFoodItem(foodName)))
-    }, [foodName, setMyFoodState])
+        onClose()
+    }, [foodName, setMyFoodState, onClose])
 
     return (
         <Box>
