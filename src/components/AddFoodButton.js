@@ -9,7 +9,16 @@ import {
     ModalBody,
     ModalCloseButton,
     useDisclosure,
-    Box
+    Box,
+    Popover,
+    PopoverTrigger,
+    PopoverContent,
+    PopoverHeader,
+    PopoverBody,
+    PopoverFooter,
+    PopoverArrow,
+    PopoverCloseButton,
+    PopoverAnchor,
 } from '@chakra-ui/react'
 import { nanoid } from 'nanoid';
 
@@ -30,35 +39,28 @@ const createFoodItem = (name, unit = 'cup') => {
     }
 }
 
-export const AddFoodButton = ({ foodName, setMyFoodState }) => {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+export const AddFoodButton = ({ foodName, setMyFoodState, id }) => {
     const onClick = React.useCallback(() => {
         setMyFoodState(myFoodState => myFoodState.concat(createFoodItem(foodName)))
-        onClose()
-    }, [foodName, setMyFoodState, onClose])
+    }, [foodName, setMyFoodState,])
 
     return (
-        <Box>
-            <Button size={'sm'} foodame={foodName} onClick={onOpen} >
-                {foodName}
-            </Button>
+        <Popover>
 
-            <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>{foodName}</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
-                        {foodName}
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button colorScheme='blue' mr={3} onClick={onClose}>
-                            Close
-                        </Button>
-                        <Button onClick={onClick} variant='ghost'>Add to Log</Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
-        </Box>
+            <PopoverTrigger>
+                <Button size={'sm'} foodame={foodName}>
+                    {foodName}
+                </Button>
+            </PopoverTrigger>
+
+            <PopoverContent>
+                <PopoverArrow />
+                <PopoverCloseButton />
+                <PopoverHeader>{foodName}</PopoverHeader>
+                <PopoverBody><Button onClick={onClick} variant='outline' colorScheme='blue'>Add to Log</Button></PopoverBody>
+            </PopoverContent>
+
+        </Popover >
+
     )
 }
