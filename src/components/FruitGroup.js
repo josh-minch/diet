@@ -5,7 +5,7 @@ import {
 import { FoodGroup } from './FoodGroup'
 
 
-export const FruitGroup = ({ foodCheckedState, onFoodClicked }) => {
+export const FruitGroup = ({ foodCheckedState, setMyFoodState }) => {
     return (
         <>
             <FoodGroup
@@ -13,7 +13,7 @@ export const FruitGroup = ({ foodCheckedState, onFoodClicked }) => {
                 foodGroupDisplayName={'Fruit'}
                 headingSize={'md'}
                 foodCheckedState={foodCheckedState}
-                onFoodClicked={onFoodClicked} />
+                setMyFoodState={setMyFoodState} />
             <Divider mt={4} mb={1} />
         </>
     )

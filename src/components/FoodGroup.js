@@ -17,7 +17,7 @@ import { AddFoodButton } from './AddFoodButton';
 
 
 
-const FoodGroupHeader = React.memo(({ headingSize, foodGroupDisplayName, handleToggle, show }) => {
+const FoodGroupHeader = ({ headingSize, foodGroupDisplayName, handleToggle, show }) => {
     return (
         <Flex alignItems={'end'} ml={1}>
             <Heading mb={1} size={headingSize} fontWeight={headingSize === 'sm' ? '600' : '700'}>{foodGroupDisplayName}</Heading>
@@ -34,9 +34,9 @@ const FoodGroupHeader = React.memo(({ headingSize, foodGroupDisplayName, handleT
             </Button>
         </Flex>
     )
-})
+}
 
-const ShowAllIconButton = React.memo(({ handleToggle, show }) => {
+const ShowAllIconButton = ({ handleToggle, show }) => {
     return (
         <Center>
             <IconButton colorScheme='red' color='brand.100' size='sm' w={20} h={8} onClick={handleToggle} variant='ghost'
@@ -44,12 +44,12 @@ const ShowAllIconButton = React.memo(({ handleToggle, show }) => {
             </IconButton>
         </Center>
     )
-})
+}
 
 const transitionDuration = 0.15
 const collapseStartingHeight = 160
 
-const CollapsableFoodGroupContent = React.memo(({ foodGroup, show, onFoodClicked }) => {
+const CollapsableFoodGroupContent = ({ foodGroup, show, setMyFoodState }) => {
     return (
         <Collapse
             transition={{ enter: { duration: transitionDuration }, exit: { duration: transitionDuration } }}
@@ -63,7 +63,7 @@ const CollapsableFoodGroupContent = React.memo(({ foodGroup, show, onFoodClicked
                         .map(({ foodName, id }) =>
                             <AddFoodButton
                                 foodName={foodName}
-                                onFoodClicked={onFoodClicked}
+                                setMyFoodState={setMyFoodState}
                                 id={id}
                                 key={id}
                             />
@@ -72,20 +72,20 @@ const CollapsableFoodGroupContent = React.memo(({ foodGroup, show, onFoodClicked
             </Wrap>
         </Collapse>
     )
-})
+}
 
-export const FoodGroup = React.memo(({ foodGroup, foodGroupDisplayName, headingSize, onFoodClicked }) => {
+export const FoodGroup = ({ foodGroup, foodGroupDisplayName, headingSize, setMyFoodState }) => {
     const [show, setShow] = React.useState(false)
     const handleToggle = React.useCallback(() => setShow(show => !show), [])
 
     return (
         <Box mb={0}>
             <FoodGroupHeader headingSize={headingSize} foodGroupDisplayName={foodGroupDisplayName} handleToggle={handleToggle} show={show} />
-            <CollapsableFoodGroupContent foodGroup={foodGroup} show={show} onFoodClicked={onFoodClicked} />
+            <CollapsableFoodGroupContent foodGroup={foodGroup} show={show} setMyFoodState={setMyFoodState} />
             <ShowAllIconButton handleToggle={handleToggle} show={show} />
         </Box>
     )
-})
+}
 
 FoodGroup.defaultProps = {
     headingSize: 'sm'

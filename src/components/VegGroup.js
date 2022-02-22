@@ -6,7 +6,7 @@ import {
 } from '@chakra-ui/react'
 import { FoodGroup } from './FoodGroup'
 
-export const VegGroup = React.memo(({ foodCheckedState, onFoodClicked }) => {
+export const VegGroup = ({ foodCheckedState, setMyFoodState }) => {
     return (
         <Box>
             <Heading size='md' mt={2} ml={1}>Vegetables</Heading>
@@ -14,28 +14,28 @@ export const VegGroup = React.memo(({ foodCheckedState, onFoodClicked }) => {
                 foodGroup={'green'}
                 foodGroupDisplayName={'Dark Green Vegetables'}
                 foodCheckedState={foodCheckedState}
-                onFoodClicked={onFoodClicked} />
+                setMyFoodState={setMyFoodState} />
             <FoodGroup
                 foodGroup={'red'}
                 foodGroupDisplayName={'Red and Orange Vegetables'}
                 foodCheckedState={foodCheckedState}
-                onFoodClicked={onFoodClicked} />
+                setMyFoodState={setMyFoodState} />
             <FoodGroup
                 foodGroup={'bean'}
                 foodGroupDisplayName={'Beans, Peas, and Lentils'}
                 foodCheckedState={foodCheckedState}
-                onFoodClicked={onFoodClicked} />
+                setMyFoodState={setMyFoodState} />
             <FoodGroup
                 foodGroup={'starchy'}
                 foodGroupDisplayName={'Starchy Vegetables'}
                 foodCheckedState={foodCheckedState}
-                onFoodClicked={onFoodClicked} />
+                setMyFoodState={setMyFoodState} />
             <FoodGroup
                 foodGroup={'other'}
                 foodGroupDisplayName={'Other Vegetables'}
                 foodCheckedState={foodCheckedState}
-                onFoodClicked={onFoodClicked} />
+                setMyFoodState={setMyFoodState} />
             <Divider mt={4} mb={1} />
         </Box>
     )
-})
+}

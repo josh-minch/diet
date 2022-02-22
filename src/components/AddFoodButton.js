@@ -30,15 +30,15 @@ const createFoodItem = (name, unit = 'cup') => {
     }
 }
 
-export const AddFoodButton = React.memo(({ foodName, onFoodClicked }) => {
+export const AddFoodButton = ({ foodName, setMyFoodState }) => {
     // const { isOpen, onOpen, onClose } = useDisclosure()
-    const onFoodAdd = React.useCallback(() => {
-        onFoodClicked(myFoodState => myFoodState.concat(createFoodItem(foodName)))
+    const onClick = React.useCallback(() => {
+        setMyFoodState(myFoodState => myFoodState.concat(createFoodItem(foodName)))
     }, [])
 
     return (
         <>
-            <Button size={'sm'} foodame={foodName} onClick={onFoodAdd} >
+            <Button size={'sm'} foodame={foodName} onClick={onClick} >
                 {foodName}
             </Button>
 
@@ -60,4 +60,4 @@ export const AddFoodButton = React.memo(({ foodName, onFoodClicked }) => {
             </Modal> */}
         </>
     )
-})
+}

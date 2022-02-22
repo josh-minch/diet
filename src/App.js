@@ -16,15 +16,9 @@ import {
 } from '@chakra-ui/react';
 import { Global, css } from '@emotion/react'
 import { CalendarIcon, PlusSquareIcon, TimeIcon } from '@chakra-ui/icons';
-
 import { CalorieForm } from './components/CalorieForm';
-import { VegGroup } from './components/VegGroup';
-import { FruitGroup } from './components/FruitGroup';
-import { GrainGroup } from './components/GrainGroup';
-import { DairyGroup } from './components/DairyGroup';
-import { ProteinGroup } from './components/ProteinGroup';
+import { AddFoodPanel } from './components/AddFoodPanel';
 import { Log } from './components/Log';
-
 
 
 const theme = extendTheme({
@@ -97,11 +91,7 @@ function App() {
             <Tabs defaultIndex={0} variant='unstyled' isFitted>
                 <TabPanels pb={tabHeight} h={`calc(100% - ${tabHeight})`} overflow="scroll">
                     <TabPanel >
-                        <VegGroup onFoodClicked={setMyFoodState} />
-                        <FruitGroup onFoodClicked={setMyFoodState} />
-                        <GrainGroup onFoodClicked={setMyFoodState} />
-                        <DairyGroup onFoodClicked={setMyFoodState} />
-                        <ProteinGroup onFoodClicked={setMyFoodState} />
+                        <AddFoodPanel setMyFoodState={setMyFoodState} />
                     </TabPanel>
                     <TabPanel >
                         <Flex>
