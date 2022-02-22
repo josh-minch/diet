@@ -9,7 +9,6 @@ import {
     Center,
     IconButton,
     Wrap,
-    WrapItem
 } from '@chakra-ui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import { foodData } from '../foodData/foodData';

@@ -31,33 +31,33 @@ const createFoodItem = (name, unit = 'cup') => {
 }
 
 export const AddFoodButton = ({ foodName, setMyFoodState }) => {
-    // const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const onClick = React.useCallback(() => {
         setMyFoodState(myFoodState => myFoodState.concat(createFoodItem(foodName)))
     }, [foodName, setMyFoodState])
 
     return (
-        <>
-            <Button size={'sm'} foodame={foodName} onClick={onClick} >
+        <Box>
+            <Button size={'sm'} foodame={foodName} onClick={onOpen} >
                 {foodName}
             </Button>
 
-            {/* <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Modal Title</ModalHeader>
+                    <ModalHeader>{foodName}</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
+                        {foodName}
                     </ModalBody>
-
                     <ModalFooter>
                         <Button colorScheme='blue' mr={3} onClick={onClose}>
                             Close
                         </Button>
-                        <Button onClick={() => onFoodClicked(myFoodState => myFoodState.concat(createFoodItem(foodName)))} variant='ghost'>Add to Log</Button>
+                        <Button onClick={onClick} variant='ghost'>Add to Log</Button>
                     </ModalFooter>
                 </ModalContent>
-            </Modal> */}
-        </>
+            </Modal>
+        </Box>
     )
 }
