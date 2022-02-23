@@ -5,15 +5,15 @@ import {
 import { FoodGroup } from './FoodGroup'
 
 
-export const DairyGroup = ({ foodCheckedState, setMyFoodState }) => {
+export const DairyGroup = ({ setMyFoodState, openModal }) => {
     return (
         <>
             <FoodGroup
                 foodGroup={'dairy'}
                 foodGroupDisplayName={'Dairy'}
                 headingSize={'md'}
-                foodCheckedState={foodCheckedState}
-                setMyFoodState={setMyFoodState} />
+                setMyFoodState={setMyFoodState}
+                openModal={openModal} />
             <Divider mt={4} mb={1} />
         </>
     )

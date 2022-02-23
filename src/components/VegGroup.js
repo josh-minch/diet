@@ -6,35 +6,31 @@ import {
 } from '@chakra-ui/react'
 import { FoodGroup } from './FoodGroup'
 
-export const VegGroup = ({ foodCheckedState, setMyFoodState }) => {
+export const VegGroup = ({ openModal }) => {
     return (
         <Box>
             <Heading size='md' mt={2} ml={1}>Vegetables</Heading>
             <FoodGroup
                 foodGroup={'green'}
                 foodGroupDisplayName={'Dark Green Vegetables'}
-                foodCheckedState={foodCheckedState}
-                setMyFoodState={setMyFoodState} />
+                openModal={openModal}
+            />
             <FoodGroup
                 foodGroup={'red'}
                 foodGroupDisplayName={'Red and Orange Vegetables'}
-                foodCheckedState={foodCheckedState}
-                setMyFoodState={setMyFoodState} />
+                openModal={openModal} />
             <FoodGroup
                 foodGroup={'bean'}
                 foodGroupDisplayName={'Beans, Peas, and Lentils'}
-                foodCheckedState={foodCheckedState}
-                setMyFoodState={setMyFoodState} />
+                openModal={openModal} />
             <FoodGroup
                 foodGroup={'starchy'}
                 foodGroupDisplayName={'Starchy Vegetables'}
-                foodCheckedState={foodCheckedState}
-                setMyFoodState={setMyFoodState} />
+                openModal={openModal} />
             <FoodGroup
                 foodGroup={'other'}
                 foodGroupDisplayName={'Other Vegetables'}
-                foodCheckedState={foodCheckedState}
-                setMyFoodState={setMyFoodState} />
+                openModal={openModal} />
             <Divider mt={4} mb={1} />
         </Box>
     )
