@@ -6,7 +6,7 @@ import {
 } from '@chakra-ui/react'
 import { FoodGroup } from './FoodGroup'
 
-export const VegGroup = ({ openModal }) => {
+export const VegGroup = React.memo(({ openModal }) => {
     return (
         <Box>
             <Heading size='md' mt={2} ml={1}>Vegetables</Heading>
@@ -34,4 +34,4 @@ export const VegGroup = ({ openModal }) => {
             <Divider mt={4} mb={1} />
         </Box>
     )
-}
+})

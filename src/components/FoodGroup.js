@@ -16,8 +16,6 @@ import { foodData } from '../foodData/foodData';
 import { AddFoodButton } from './AddFoodButton';
 
 
-
-
 const FoodGroupHeader = ({ headingSize, foodGroupDisplayName, handleToggle, show }) => {
     return (
         <Flex alignItems={'end'} ml={1}>

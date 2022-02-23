@@ -5,7 +5,7 @@ import {
 } from '@chakra-ui/react'
 import { FoodGroup } from './FoodGroup'
 
-export const GrainGroup = ({ openModal }) => {
+export const GrainGroup = React.memo(({ openModal }) => {
     return (
         <>
             <Heading size='md' mt={2} ml={1}>Grains</Heading>
@@ -20,4 +20,4 @@ export const GrainGroup = ({ openModal }) => {
             <Divider mt={4} mb={1} />
         </>
     )
-}
+})

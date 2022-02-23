@@ -5,7 +5,7 @@ import {
 import { FoodGroup } from './FoodGroup'
 
 
-export const DairyGroup = ({ setMyFoodState, openModal }) => {
+export const DairyGroup = React.memo(({ setMyFoodState, openModal }) => {
     return (
         <>
             <FoodGroup
@@ -17,4 +17,4 @@ export const DairyGroup = ({ setMyFoodState, openModal }) => {
             <Divider mt={4} mb={1} />
         </>
     )
-}
+})

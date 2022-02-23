@@ -9,8 +9,24 @@ import {
     ModalCloseButton,
     Button,
     Box,
-    useDisclosure
+    Center,
+    useDisclosure,
+    Text,
+    Tag,
+    ButtonGroup,
+    IconButton,
+    NumberInput,
+    NumberInputField,
+    Spacer,
+    Flex,
+    Select,
+    Stack,
 } from '@chakra-ui/react';
+
+import {
+    MinusIcon,
+    AddIcon
+} from '@chakra-ui/icons';
 import { nanoid } from 'nanoid';
 import { VegGroup } from '../components/VegGroup';
 import { FruitGroup } from '../components/FruitGroup';
@@ -19,7 +35,7 @@ import { DairyGroup } from '../components/DairyGroup';
 import { ProteinGroup } from '../components/ProteinGroup';
 import { foodData } from '../foodData/foodData';
 import { getServingConversionFactor } from '../req/req';
-
+import { foodGroupToDisplayName } from '../foodData/foodData'
 
 const createFoodItem = (name, unit = 'cup') => {
     return {
@@ -37,15 +53,15 @@ const createFoodItem = (name, unit = 'cup') => {
 
 export const AddFoodPanel = React.memo(({ setMyFoodState }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const [selectedFood, setSelectedFood] = React.useState()
+    const [selectedFood, setSelectedFood] = React.useState(createFoodItem('basil'))
 
-    const openModal = React.useCallback((e, foodName) => {
-        setSelectedFood(foodName)
+    const openModal = React.useCallback((foodName) => {
+        setSelectedFood(createFoodItem(foodName))
         onOpen()
     }, [onOpen])
 
     const onClick = React.useCallback(() => {
-        setMyFoodState(myFoodState => myFoodState.concat(createFoodItem(selectedFood)))
+        setMyFoodState(myFoodState => myFoodState.concat(selectedFood))
         onClose()
     }, [selectedFood, setMyFoodState, onClose])
 
@@ -56,22 +72,51 @@ export const AddFoodPanel = React.memo(({ setMyFoodState }) => {
             <GrainGroup openModal={openModal} />
             <DairyGroup openModal={openModal} />
             <ProteinGroup openModal={openModal} />
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal isOpen={isOpen} onClose={onClose} isCentered >
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Modal Title</ModalHeader>
                     <ModalCloseButton />
+                    <ModalHeader>
+                    </ModalHeader>
                     <ModalBody>
-                    </ModalBody>
+                        <Stack>
+                            <Text mb={3} fontSize='xl' fontWeight='semibold' casing='capitalize' >{selectedFood.name}</Text>
+                            <Flex>
+                                <Center>
+                                    <Text>Amount</Text>
+                                </Center>
+                                <Spacer />
+                                <Center>
 
-                    <ModalFooter>
-                        <Button colorScheme='blue' mr={3} onClick={onClose}>
-                            Close
-                        </Button>
-                        <Button onClick={onClick} variant='outline' colorScheme='blue'>Add to Log</Button>
-                    </ModalFooter>
+                                    <ButtonGroup isAttached>
+                                        <IconButton icon={< MinusIcon boxSize={3} />} variant='outline' />
+                                        <NumberInput
+                                        >
+                                            <NumberInputField maxW='70px' borderRadius={0} textAlign='center' pe='10px' ps='10px' />
+                                        </NumberInput>
+                                        <IconButton icon={< AddIcon boxSize={3} />} variant='outline' />
+                                    </ButtonGroup>
+                                </Center>
+                                <Select maxW='100px'>
+                                    <option value={selectedFood.unit}>{selectedFood.unit}</option>
+                                </Select>
+                            </Flex>
+
+                            <Box>
+
+                                <Tag variant='subtle' colorScheme={'red'}>{foodGroupToDisplayName[selectedFood.group].toLowerCase()}</Tag>
+                            </Box>
+                        </Stack>
+
+
+                    </ModalBody>
+                    <Center>
+                        <ModalFooter>
+                            <Button color='brand.100' onClick={onClick}>Add to Log</Button>
+                        </ModalFooter>
+                    </Center>
                 </ModalContent>
             </Modal>
-        </Box>
+        </Box >
     )
 })

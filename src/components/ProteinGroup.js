@@ -4,7 +4,7 @@ import {
 } from '@chakra-ui/react'
 import { FoodGroup } from './FoodGroup'
 
-export const ProteinGroup = ({ openModal }) => {
+export const ProteinGroup = React.memo(({ openModal }) => {
     return (
         <>
             <Heading size='md' mt={2} ml={1}>Protein Foods</Heading>
@@ -22,4 +22,4 @@ export const ProteinGroup = ({ openModal }) => {
                 openModal={openModal} />
         </>
     )
-}
+})
