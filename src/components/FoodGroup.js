@@ -77,9 +77,15 @@ const CollapsableFoodGroupContent = ({ foodGroup, show, setMyFoodState }) => {
 
     const [selectedFood, setSelectedFood] = React.useState()
 
+    const openModal = React.useCallback((e, foodName) => {
+        setSelectedFood(foodName)
+        onOpen()
+    }, [onOpen])
+
     const onClick = React.useCallback(() => {
         setMyFoodState(myFoodState => myFoodState.concat(createFoodItem(selectedFood)))
-    }, [selectedFood, setMyFoodState,])
+        onClose()
+    }, [selectedFood, setMyFoodState, onClose])
 
     return (
         <Collapse
@@ -95,8 +101,7 @@ const CollapsableFoodGroupContent = ({ foodGroup, show, setMyFoodState }) => {
                         .map(({ foodName, id }) =>
                             <AddFoodButton
                                 foodName={foodName}
-                                onOpen={onOpen}
-                                setSelectedFood={setSelectedFood}
+                                openModal={openModal}
                                 key={id}
                             />
                         )

@@ -6,17 +6,13 @@ import {
 
 
 
-export const AddFoodButton = ({ foodName, onOpen, setSelectedFood }) => {
-    const onClick = (e, foodName) => {
-        setSelectedFood(foodName)
-        onOpen()
-    }
-
+export const AddFoodButton = React.memo(({ foodName, openModal }) => {
+    const onClick = (e) => openModal(e, foodName)
     return (
         <>
-            <Button size={'sm'} foodame={foodName} onClick={(e) => onClick(e, foodName)}>
+            <Button size={'sm'} foodame={foodName} onClick={onClick}>
                 {foodName}
             </Button>
         </>
     )
-}
+})
