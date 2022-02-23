@@ -9,12 +9,36 @@ import {
     Center,
     IconButton,
     Wrap,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    useDisclosure
 } from '@chakra-ui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import { foodData } from '../foodData/foodData';
 import { AddFoodButton } from './AddFoodButton';
+import { nanoid } from 'nanoid';
+
+import { getServingConversionFactor } from '../req/req';
 
 
+
+const createFoodItem = (name, unit = 'cup') => {
+    return {
+        name: name,
+        group: foodData[name].group,
+        quantity: 1 / getServingConversionFactor(name),
+        unit: unit,
+        servings: function () {
+            return getServingConversionFactor(this.name) * this.quantity
+        },
+        id: nanoid()
+    }
+}
 
 const FoodGroupHeader = ({ headingSize, foodGroupDisplayName, handleToggle, show }) => {
     return (
@@ -49,9 +73,18 @@ const transitionDuration = 0.15
 const collapseStartingHeight = 160
 
 const CollapsableFoodGroupContent = ({ foodGroup, show, setMyFoodState }) => {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const [selectedFood, setSelectedFood] = React.useState()
+
+    const onClick = React.useCallback(() => {
+        setMyFoodState(myFoodState => myFoodState.concat(createFoodItem(selectedFood)))
+    }, [selectedFood, setMyFoodState,])
+
     return (
         <Collapse
-            transition={{ enter: { duration: transitionDuration }, exit: { duration: transitionDuration } }}
+            transition={{ enter: { duration: transitionDuration }, exit: { duration: transitionDuration } }
+            }
             startingHeight={collapseStartingHeight}
             in={show}
         >
@@ -62,14 +95,30 @@ const CollapsableFoodGroupContent = ({ foodGroup, show, setMyFoodState }) => {
                         .map(({ foodName, id }) =>
                             <AddFoodButton
                                 foodName={foodName}
-                                setMyFoodState={setMyFoodState}
-                                id={id}
+                                onOpen={onOpen}
+                                setSelectedFood={setSelectedFood}
                                 key={id}
                             />
                         )
                 }
             </Wrap>
-        </Collapse>
+            <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Modal Title</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                    </ModalBody>
+
+                    <ModalFooter>
+                        <Button colorScheme='blue' mr={3} onClick={onClose}>
+                            Close
+                        </Button>
+                        <Button onClick={onClick} variant='outline' colorScheme='blue'>Add to Log</Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
+        </Collapse >
     )
 }
 
