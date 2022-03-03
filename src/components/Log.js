@@ -40,7 +40,7 @@ const Req = ({ myFoodStateFoodGroup, foodGroupReq }) => {
             {['oils', 'discret', 'discretPercent'].includes(foodGroupReq.group) === false &&
                 <>
                     <HStack position="absolute" spacing={boxSpacing}>
-                        {[...Array(numEmptyWholeBoxes)].map((value, index) => (
+                        {numEmptyWholeBoxes && [...Array(numEmptyWholeBoxes)].map((value, index) => (
                             <Box borderRadius='sm' border='1px' borderColor='red.500' bg='white' w={`${boxWidth}px`} h={`${boxHeight}px`} key={index}></Box>
                         ))}
                         {partialEmptyBoxWidth &&
@@ -48,7 +48,7 @@ const Req = ({ myFoodStateFoodGroup, foodGroupReq }) => {
                         }
                     </HStack >
                     <HStack h={`${boxHeight}px`} position="relative" spacing={boxSpacing}>
-                        {[...Array(numWholeBoxes)].map((value, index) => (
+                        {numWholeBoxes && [...Array(numWholeBoxes)].map((value, index) => (
                             <Box borderRadius='sm' bg='red.500' w={`${boxWidth}px`} h={`${boxHeight}px`} key={index}></Box>
                         ))}
                         {partialBoxProgressValue > 0 &&
@@ -65,12 +65,15 @@ const Req = ({ myFoodStateFoodGroup, foodGroupReq }) => {
 export const Log = ({ myFoodState, setMyFoodState, calNeeds }) => {
     const req = getReq(calNeeds)
     return (
-        <>
+        <Box mt={4}>
             <Stack>
                 <Box>
                     <Heading mb={2} size={'md'}>
                         Log
                     </Heading>
+                    {myFoodState.length === 0 &&
+                        <Text>Add some foods to get started :)</Text>
+                    }
                     {myFoodState.map(food =>
                         <FoodItem food={food} key={food.id} setMyFoodState={setMyFoodState} />)}
                 </ Box>
@@ -86,6 +89,6 @@ export const Log = ({ myFoodState, setMyFoodState, calNeeds }) => {
                     })}
                 </Box>
             </Stack>
-        </>
+        </Box>
     )
 }
