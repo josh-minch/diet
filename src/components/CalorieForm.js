@@ -1,7 +1,7 @@
 import React from 'react';
-import { AgeForm } from './AgeForm';
-import { SexForm } from './SexForm';
-import { ActivityForm } from './ActivityForm';
+import { AgeForm } from './forms/AgeForm';
+import { SexForm } from './forms/SexForm';
+import { ActivityForm } from './forms/ActivityForm';
 import {
     Stack,
     Text,
@@ -31,7 +31,7 @@ export const CalorieForm = ({ calorieModalIsOpen, calorieModalOnClose, calNeeds,
             <ModalOverlay />
             <ModalContent>
                 <ModalBody>
-                    <Heading size='md' as='h2'>
+                    <Heading mb={1} size='md' as='h2'>
                         About You
                     </Heading>
                     <Text>
@@ -39,10 +39,10 @@ export const CalorieForm = ({ calorieModalIsOpen, calorieModalOnClose, calNeeds,
                     </Text>
                     <Stack mt={4} spacing={4}>
                         <AgeForm age={age} ageUnit={ageUnit} setAge={setAge} setAgeUnit={setAgeUnit} />
-                        <SexForm sex={sex} setSex={setSex} />
+                        <SexForm sex={sex} setSex={setSex} age={age} />
                         <ActivityForm setActivityLevel={setActivityLevel} />
                     </Stack>
-                    <Heading mt={4} size='md'>Estimated caloric needs</Heading>
+                    <Heading mt={4} as='h2' size='md' mb={1}>Estimated caloric needs</Heading>
                     <Text>{calNeeds}</Text>
                 </ModalBody>
 

@@ -13,9 +13,11 @@ import {
     Button,
     Flex,
     useDisclosure,
+    Heading,
+    Stack
 } from '@chakra-ui/react';
 import { Global, css } from '@emotion/react'
-import { CalendarIcon, PlusSquareIcon, TimeIcon } from '@chakra-ui/icons';
+import { CalendarIcon, PlusSquareIcon, TimeIcon, SettingsIcon } from '@chakra-ui/icons';
 import { CalorieForm } from './components/CalorieForm';
 import { AddFoodPanel } from './components/AddFoodPanel';
 import { Log } from './components/Log';
@@ -53,7 +55,6 @@ const GlobalStyles = css`
 const tabHeight = '55px'
 
 function App() {
-    // const [foodCheckedState, setFoodCheckedState] = React.useState(foodData)
     const [myFoodState, setMyFoodState] = React.useState([])
 
     const [age, setAge] = React.useState('')
@@ -64,27 +65,6 @@ function App() {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    // const onFoodClicked = React.useCallback((e) => {
-    //     console.log(e.target.foodname)
-    //     // const foodToAdd = createFoodItem(e.target.foodname)
-    //     // setMyFoodState(myFoodState => myFoodState.concat(foodToAdd))
-    // }, [])
-
-    // const onFoodChecked = React.useCallback((e) => {
-    //     const checkedFoodName = e.target.value
-    //     setFoodCheckedState(foodState => {
-    //         const newFoodState = { ...foodState }
-    //         const oldCheckedState = newFoodState[checkedFoodName]['isChecked']
-    //         newFoodState[checkedFoodName]['isChecked'] = !oldCheckedState
-    //         return newFoodState
-    //     })
-
-    //     const myFoodItem = createFoodItem(checkedFoodName)
-    //     setMyFoodState(myFoodState => e.target.checked ?
-    //         myFoodState.concat(myFoodItem) :
-    //         myFoodState.filter(food => food.name !== checkedFoodName))
-    // }, [])
-
     return (
         <ChakraProvider theme={theme} >
             <Global styles={GlobalStyles} />
@@ -94,10 +74,13 @@ function App() {
                         <AddFoodPanel setMyFoodState={setMyFoodState} />
                     </TabPanel>
                     <TabPanel >
-                        <Flex>
-                            <Text>{calNeeds}</Text>
+                        <Flex alignItems={'center'}>
+                            <Stack spacing={1}>
+                                <Heading size='md'>Dietary needs</Heading>
+                                <Text>{calNeeds} calories</Text>
+                            </Stack>
                             <Spacer />
-                            <Button onClick={onOpen}>Get recommendation</Button>
+                            <Button onClick={onOpen} leftIcon={<SettingsIcon />}>Profile</Button>
                         </Flex>
                         <CalorieForm calorieModalIsOpen={isOpen} calorieModalOnClose={onClose} calNeeds={calNeeds} setCalNeeds={setCalNeeds} age={age} ageUnit={ageUnit} sex={sex} activityLevel={activityLevel}
                             setAge={setAge} setAgeUnit={setAgeUnit} setSex={setSex} setActivityLevel={setActivityLevel} />

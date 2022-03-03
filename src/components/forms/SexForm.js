@@ -12,8 +12,7 @@ import { PregForm } from './PregForm'
 import { LactForm } from './LactForm'
 
 
-export const SexForm = ({ sex, setSex }) => {
-
+export const SexForm = ({ sex, setSex, age }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
@@ -25,10 +24,12 @@ export const SexForm = ({ sex, setSex }) => {
                     <Radio value='male' onChange={onClose}>Male</Radio>
                 </HStack>
             </RadioGroup>
-            <Collapse in={isOpen} animateOpacity>
-                <PregForm marginLeft={3} />
-                <LactForm marginLeft={3} />
-            </Collapse>
+            {age >= 14 &&
+                <Collapse in={isOpen} animateOpacity>
+                    <PregForm marginLeft={3} />
+                    <LactForm marginLeft={3} />
+                </Collapse>
+            }
         </FormControl >
     )
 }
