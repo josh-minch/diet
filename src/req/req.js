@@ -131,24 +131,18 @@ const us = {
     3200: [4, 2.5, 7.5, 3, 8, 7, 2.5, 10, 5, 5, 3, 7, 33, null, 10, 6, 51, 580, 18],
 }
 
-
-
-const req_all_food_groups_us = [2.5 / 7, 7 / 7, 2.5 / 7, 7 / 7, 5.5 / 7, 2, 4.5, 4.5, 3, 31 / 7, 10 / 7, 5 / 7]
-
-const foodGroups = ['veg', 'green', 'red', 'bean', 'starchy', 'other', 'fruit', 'grains', 'whole', 'refined', 'dairy', 'protein', 'meats', 'seafood', 'nuts', 'oils', 'discret', 'discretPercent']
-const displayNames = ['Vegetables', 'Dark Green Vegetables', 'Red and Orange Vegetables', 'Beans, Peas, and Lentils', 'Starchy Vegetables', 'Other Vegetables',
-    'Fruit', 'Grains', 'Whole Grains', 'Refined Grains', 'Dairy', 'Protein Foods', 'Meats, Poultry, and Eggs', 'Seafood (Low in Mercury)', 'Nuts, Seeds, and Soy Products', 'Oils', 'Limit on Calories for Other Uses', 'Limit on Calories for Other Uses (%)']
+const foodGroups = ['veg', 'green', 'red', 'bean', 'starchy', 'other', 'fruit', 'grains', 'whole', 'refined', 'dairy', 'protein', 'meats', 'eggs', 'seafood', 'nuts', 'oils', 'discret', 'discretPercent']
+const displayNames = ['Vegetables', 'Dark Green Vegetables', 'Red and Orange Vegetables', 'Beans, Peas, and Lentils', 'Starchy Vegetables', 'Other Vegetables', 'Fruit', 'Grains', 'Whole Grains', 'Refined Grains', 'Dairy', 'Protein Foods', 'Meats, Poultry, and Eggs', 'Eggs', 'Seafood (Low in Mercury)', 'Nuts, Seeds, and Soy Products', 'Oils', 'Limit on Calories for Other Uses', 'Limit on Calories for Other Uses (%)']
 export const foodGroupToDisplayName = {}
 foodGroups.forEach((group, i) => foodGroupToDisplayName[group] = displayNames[i])
 
 // Food groups whose quantities are given in daily (as opposed to weekly) amounts
-const dailyFoodGroups = new Set(['veg', 'fruit', 'grains', 'dairy', 'protein', 'oils', 'discret', 'discretPercent'])
+const dailyFoodGroups = new Set(['veg', 'fruit', 'grains', 'whole', 'refined', 'dairy', 'protein', 'oils', 'discret', 'discretPercent'])
 
 export const getReq = (calNeeds) => {
     return foodGroups.map((foodGroup, i) => ({ group: foodGroup, req: dailyFoodGroups.has(foodGroup) ? us[calNeeds][i] : us[calNeeds][i] / 7 }))
 }
 
-export const req = foodGroups.map((foodGroup, i) => ({ group: foodGroup, req: req_all_food_groups_us[i] }))
 
 const leafy = new Set(['basil', 'bok choy', 'chard', 'cilantro', 'collard greens', 'kale', 'romaine lettuce', 'leaf lettuce', 'mustard greens', 'spinach', 'amaranth leaves', 'beet greens', 'bitter melon leaves', 'chamnamul', 'chrysanthemum leaves', 'cress', 'dandelion greens', 'lambsquarters', 'poke greens', 'nettles', 'taro leaves', 'turnip greens', 'watercress'])
 const dried = new Set(['sun-dried tomatoes', 'raisins', 'currants', 'prunes'])
