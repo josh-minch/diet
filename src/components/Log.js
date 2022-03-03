@@ -37,22 +37,26 @@ const Req = ({ myFoodStateFoodGroup, foodGroupReq }) => {
         <Box mb={3}>
             <Text mb={0} fontWeight={'semibold'} size='sm'>{foodGroupToDisplayName[foodGroupReq.group]}</Text>
             <Text mb={1}>{totalFoodGroupQuantity} of {roundedReq}</Text>
-            <HStack position="absolute" spacing={boxSpacing}>
-                {[...Array(numEmptyWholeBoxes)].map((value, index) => (
-                    <Box borderRadius='sm' border='1px' borderColor='red.500' bg='white' w={`${boxWidth}px`} h={`${boxHeight}px`} key={index}></Box>
-                ))}
-                {partialEmptyBoxWidth &&
-                    <Box border='1px' borderColor='red.500' borderRadius='sm' bg='white' width={`${partialEmptyBoxWidth}px`} h={`${boxHeight}px`} />
-                }
-            </HStack >
-            <HStack h={`${boxHeight}px`} position="relative" spacing={boxSpacing}>
-                {[...Array(numWholeBoxes)].map((value, index) => (
-                    <Box borderRadius='sm' bg='red.500' w={`${boxWidth}px`} h={`${boxHeight}px`} key={index}></Box>
-                ))}
-                {partialBoxProgressValue > 0 &&
-                    <Box border='1px' borderColor='red.500' borderRadius='sm' bg='red.500' width={`${partialBoxProgressValue}px`} h={`${boxHeight}px`} />
-                }
-            </HStack>
+            {['oils', 'discret', 'discretPercent'].includes(foodGroupReq.group) === false &&
+                <>
+                    <HStack position="absolute" spacing={boxSpacing}>
+                        {[...Array(numEmptyWholeBoxes)].map((value, index) => (
+                            <Box borderRadius='sm' border='1px' borderColor='red.500' bg='white' w={`${boxWidth}px`} h={`${boxHeight}px`} key={index}></Box>
+                        ))}
+                        {partialEmptyBoxWidth &&
+                            <Box border='1px' borderColor='red.500' borderRadius='sm' bg='white' width={`${partialEmptyBoxWidth}px`} h={`${boxHeight}px`} />
+                        }
+                    </HStack >
+                    <HStack h={`${boxHeight}px`} position="relative" spacing={boxSpacing}>
+                        {[...Array(numWholeBoxes)].map((value, index) => (
+                            <Box borderRadius='sm' bg='red.500' w={`${boxWidth}px`} h={`${boxHeight}px`} key={index}></Box>
+                        ))}
+                        {partialBoxProgressValue > 0 &&
+                            <Box border='1px' borderColor='red.500' borderRadius='sm' bg='red.500' width={`${partialBoxProgressValue}px`} h={`${boxHeight}px`} />
+                        }
+                    </HStack>
+                </>
+            }
         </Box>
     )
 };
