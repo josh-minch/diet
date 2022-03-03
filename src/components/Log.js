@@ -24,6 +24,7 @@ const Req = ({ myFoodStateFoodGroup, foodGroupReq }) => {
 
     const boxWidth = 40
     const boxHeight = 10
+    const boxSpacing = '5px'
 
     const roundedReq = Math.round(foodGroupReq.req * 100) / 100
 
@@ -31,26 +32,26 @@ const Req = ({ myFoodStateFoodGroup, foodGroupReq }) => {
     const partialEmptyBoxWidth = (roundedReq - Math.floor(roundedReq)) * boxWidth
 
     const numWholeBoxes = Math.floor(totalFoodGroupQuantity)
-    const partialBoxProgressValue = 100 * (totalFoodGroupQuantity - Math.floor(totalFoodGroupQuantity))
+    const partialBoxProgressValue = boxWidth * (totalFoodGroupQuantity - Math.floor(totalFoodGroupQuantity))
 
     return (
         <Box mb={3}>
-            <Text fontWeight={'semibold'} size='sm'>{foodGroupToDisplayName[foodGroupReq.group]}</Text>
+            <Text mb={0} fontWeight={'semibold'} size='sm'>{foodGroupToDisplayName[foodGroupReq.group]}</Text>
             <Text mb={1}>{totalFoodGroupQuantity} of {roundedReq}</Text>
-            <HStack position="absolute" spacing='10px'>
+            <HStack position="absolute" spacing={boxSpacing}>
                 {[...Array(numEmptyWholeBoxes)].map((value, index) => (
                     <Box borderRadius='sm' border='1px' borderColor='red.500' bg='white' w={`${boxWidth}px`} h={`${boxHeight}px`} key={index}></Box>
                 ))}
                 {partialEmptyBoxWidth &&
-                    <Progress border='1px' borderColor='red.500' borderRadius='sm' bg='white' colorScheme='red' value={0} width={`${partialEmptyBoxWidth}px`} h={`${boxHeight}px`} />
+                    <Box border='1px' borderColor='red.500' borderRadius='sm' bg='white' width={`${partialEmptyBoxWidth}px`} h={`${boxHeight}px`} />
                 }
             </HStack >
-            <HStack h={`${boxHeight}px`} position="relative" spacing='10px'>
+            <HStack h={`${boxHeight}px`} position="relative" spacing={boxSpacing}>
                 {[...Array(numWholeBoxes)].map((value, index) => (
                     <Box borderRadius='sm' bg='red.500' w={`${boxWidth}px`} h={`${boxHeight}px`} key={index}></Box>
                 ))}
                 {partialBoxProgressValue > 0 &&
-                    <Progress border='1px' borderColor='red.500' borderRadius='sm' bg='white' colorScheme='red' value={partialBoxProgressValue} width={`${boxWidth}px`} h={`${boxHeight}px`} />
+                    <Box border='1px' borderColor='red.500' borderRadius='sm' bg='red.500' width={`${partialBoxProgressValue}px`} h={`${boxHeight}px`} />
                 }
             </HStack>
         </Box>
