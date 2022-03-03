@@ -7,7 +7,6 @@ import {
     HStack,
     Text,
     Stack,
-    Progress
 } from '@chakra-ui/react'
 import { FoodItem } from './FoodItem'
 import { getReq } from '../req/req'
