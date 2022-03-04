@@ -20,12 +20,14 @@ const Req = ({ myFoodStateFoodGroup, foodGroupReq }) => {
             .map(food => food.servings())
             .reduce((prev, cur) => prev + cur, 0)
     }
+    const roundedReq = Math.round(foodGroupReq.req * 100) / 100
 
     const boxWidth = 40
     const boxHeight = 10
     const boxSpacing = '5px'
-
-    const roundedReq = Math.round(foodGroupReq.req * 100) / 100
+    const boxColor = totalFoodGroupQuantity >= roundedReq ? 'green.600' : 'gray.500'
+    const textColor = totalFoodGroupQuantity >= roundedReq ? 'green.700' : ''
+    const fontWeight = totalFoodGroupQuantity >= roundedReq ? 'semibold' : 'semibold'
 
     const numEmptyWholeBoxes = Math.floor(roundedReq)
     const partialEmptyBoxWidth = (roundedReq - Math.floor(roundedReq)) * boxWidth
@@ -34,30 +36,38 @@ const Req = ({ myFoodStateFoodGroup, foodGroupReq }) => {
     const partialBoxProgressValue = boxWidth * (totalFoodGroupQuantity - Math.floor(totalFoodGroupQuantity))
 
     return (
-        <Box mb={3}>
-            <Text mb={0} fontWeight={'semibold'} size='sm'>{foodGroupToDisplayName[foodGroupReq.group]}</Text>
-            <Text mb={1}>{totalFoodGroupQuantity} of {roundedReq}</Text>
-            {['oils', 'discret', 'discretPercent'].includes(foodGroupReq.group) === false &&
-                <>
-                    <HStack position="absolute" spacing={boxSpacing}>
-                        {numEmptyWholeBoxes && [...Array(numEmptyWholeBoxes)].map((value, index) => (
-                            <Box borderRadius='sm' border='1px' borderColor='red.500' bg='white' w={`${boxWidth}px`} h={`${boxHeight}px`} key={index}></Box>
-                        ))}
-                        {partialEmptyBoxWidth &&
-                            <Box border='1px' borderColor='red.500' borderRadius='sm' bg='white' width={`${partialEmptyBoxWidth}px`} h={`${boxHeight}px`} />
-                        }
-                    </HStack >
-                    <HStack h={`${boxHeight}px`} position="relative" spacing={boxSpacing}>
-                        {numWholeBoxes && [...Array(numWholeBoxes)].map((value, index) => (
-                            <Box borderRadius='sm' bg='red.500' w={`${boxWidth}px`} h={`${boxHeight}px`} key={index}></Box>
-                        ))}
-                        {partialBoxProgressValue > 0 &&
-                            <Box border='1px' borderColor='red.500' borderRadius='sm' bg='red.500' width={`${partialBoxProgressValue}px`} h={`${boxHeight}px`} />
-                        }
-                    </HStack>
-                </>
-            }
-        </Box>
+        <>
+            <Box mb={4} >
+                <Text >{foodGroupToDisplayName[foodGroupReq.group]}</Text>
+                <HStack mb={1} spacing='5px' fontVariant='tabularNums' color={textColor} align='baseline'>
+                    <Text fontWeight={fontWeight}>{totalFoodGroupQuantity}</Text>
+                    <Text letterSpacing={'-0.4px'} fontSize='13px'>of</Text>
+                    <Text fontWeight={fontWeight}>{roundedReq}</Text>
+                </HStack>
+                {
+                    ['oils', 'discret', 'discretPercent'].includes(foodGroupReq.group) === false &&
+                    <>
+                        <HStack position="absolute" spacing={boxSpacing}>
+                            {numEmptyWholeBoxes && [...Array(numEmptyWholeBoxes)].map((value, index) => (
+                                <Box borderRadius='sm' border='1px' borderColor={boxColor} bg='white' w={`${boxWidth}px`} h={`${boxHeight}px`} key={index}></Box>
+                            ))}
+                            {partialEmptyBoxWidth &&
+                                <Box border='1px' borderColor={boxColor} borderRadius='sm' bg='white' width={`${partialEmptyBoxWidth}px`} h={`${boxHeight}px`} />
+                            }
+                        </HStack >
+                        <HStack h={`${boxHeight}px`} position="relative" spacing={boxSpacing}>
+                            {numWholeBoxes && [...Array(numWholeBoxes)].map((value, index) => (
+                                <Box borderRadius='sm' bg={boxColor} w={`${boxWidth}px`} h={`${boxHeight}px`} key={index}></Box>
+                            ))}
+                            {partialBoxProgressValue > 0 &&
+                                <Box border='1px' borderColor={boxColor} borderRadius='sm' bg={boxColor} width={`${partialBoxProgressValue}px`} h={`${boxHeight}px`} />
+                            }
+                        </HStack>
+                    </>
+                }
+
+            </Box >
+        </>
     )
 };
 
