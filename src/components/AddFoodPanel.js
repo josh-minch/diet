@@ -34,7 +34,7 @@ import { GrainGroup } from '../components/GrainGroup';
 import { DairyGroup } from '../components/DairyGroup';
 import { ProteinGroup } from '../components/ProteinGroup';
 import { foodData } from '../foodData/foodData';
-import { getServingConversionFactor } from '../req/req';
+import { getServingConversionFactor } from '../patterns/patterns';
 import { foodGroupToDisplayName } from '../foodData/foodData'
 
 const createFoodItem = (name, unit = 'cup') => {
@@ -72,6 +72,7 @@ export const AddFoodPanel = React.memo(({ setMyFoodState }) => {
             <GrainGroup openModal={openModal} />
             <DairyGroup openModal={openModal} />
             <ProteinGroup openModal={openModal} />
+
             <Modal isOpen={isOpen} onClose={onClose} isCentered >
                 <ModalOverlay />
                 <ModalContent>
@@ -87,7 +88,6 @@ export const AddFoodPanel = React.memo(({ setMyFoodState }) => {
                                 </Center>
                                 <Spacer />
                                 <Center>
-
                                     <ButtonGroup isAttached>
                                         <IconButton icon={< MinusIcon boxSize={3} />} variant='outline' />
                                         <NumberInput
@@ -101,14 +101,10 @@ export const AddFoodPanel = React.memo(({ setMyFoodState }) => {
                                     <option value={selectedFood.unit}>{selectedFood.unit}</option>
                                 </Select>
                             </Flex>
-
                             <Box>
-
                                 <Tag variant='subtle' colorScheme={'red'}>{foodGroupToDisplayName[selectedFood.group].toLowerCase()}</Tag>
                             </Box>
                         </Stack>
-
-
                     </ModalBody>
                     <Center>
                         <ModalFooter>

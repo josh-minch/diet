@@ -14,7 +14,7 @@ import {
     Button,
 } from '@chakra-ui/react';
 
-import { getCalNeeds } from '../req/req';
+import { getCalNeeds } from '../patterns/patterns';
 
 
 export const CalorieForm = ({ calorieModalIsOpen, calorieModalOnClose, calNeeds, setCalNeeds, age, ageUnit, sex, activityLevel, setAge, setAgeUnit, setSex, setActivityLevel }) => {
