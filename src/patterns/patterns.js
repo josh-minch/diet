@@ -136,11 +136,15 @@ const displayNames = ['Vegetables', 'Dark Green Vegetables', 'Red and Orange Veg
 export const foodGroupToDisplayName = {}
 foodGroups.forEach((group, i) => foodGroupToDisplayName[group] = displayNames[i])
 
+export const vegGroups = ['veg', 'green', 'red', 'bean', 'starchy', 'other',]
+export const grainsGroups = ['grains', 'whole', 'refined']
+export const proteinGroups = ['protein', 'meats', 'eggs', 'seafood', 'nuts',]
+
 // Food groups whose quantities are given in daily (as opposed to weekly) amounts
 const dailyFoodGroups = new Set(['veg', 'fruit', 'grains', 'whole', 'refined', 'dairy', 'protein', 'oils', 'discret', 'discretPercent'])
 
-export const getReq = (calNeeds) => {
-    return foodGroups.map((foodGroup, i) => ({ group: foodGroup, req: dailyFoodGroups.has(foodGroup) ? us[calNeeds][i] : us[calNeeds][i] / 7 }))
+export const getPattern = (calNeeds) => {
+    return foodGroups.map((foodGroup, i) => ({ group: foodGroup, value: dailyFoodGroups.has(foodGroup) ? us[calNeeds][i] : us[calNeeds][i] / 7 }))
 }
 
 
