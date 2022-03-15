@@ -12,7 +12,7 @@ import {
     Flex,
     Spacer
 } from '@chakra-ui/react'
-import { AddIcon, MinusIcon } from '@chakra-ui/icons'
+import { AddIcon, MinusIcon, CloseIcon, DeleteIcon } from '@chakra-ui/icons'
 import { foodGroupToDisplayName } from '../foodData/foodData'
 
 export const FoodItem = ({ food, setMyFoodState }) => {
@@ -40,9 +40,17 @@ export const FoodItem = ({ food, setMyFoodState }) => {
 
     const servingsText = food.servings() === 1 ? 'serving' : 'servings'
 
+    const removeFood = React.useCallback(() => {
+        setMyFoodState(foodState => foodState.filter(f => f !== food))
+    }, [food, setMyFoodState])
+
     return (
         <Stack mb={6}>
-            <Text casing='capitalize' fontWeight='semibold' size='sm'>{food.name}</Text>
+            <Flex>
+                <Text casing='capitalize' fontWeight='semibold' size='sm'>{food.name}</Text>
+                <Spacer />
+                <IconButton boxSize={'35px'} icon={<DeleteIcon />} onClick={removeFood} />
+            </Flex>
             <HStack>
                 <ButtonGroup isAttached>
                     <IconButton icon={< MinusIcon boxSize={3} />} isDisabled={food.quantity <= minQuantity} variant='outline' onClick={() => decrementQuantity(food.id)} />
