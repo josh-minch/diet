@@ -179,8 +179,6 @@ export const Log = ({ myFoodState, setMyFoodState, calNeeds }) => {
     const myDairyState = myFoodState.filter(food => food.group === 'dairy')
     const myProteinState = myFoodState.filter(food => proteinGroups.includes(food.group))
 
-    // const myFoodGroupStates = [myVegState, myFruitState, myGrainsState, myDairyState, myProteinState]
-
     const dietPattern = getPattern(calNeeds)
     const vegPattern = dietPattern.filter(p => vegGroups.includes(p.group))
     const fruitPattern = dietPattern.filter(p => p.group === 'fruit')[0]
@@ -212,11 +210,6 @@ export const Log = ({ myFoodState, setMyFoodState, calNeeds }) => {
                     <CollapsableFoodGroupProgress foodGroupStates={myGrainsState} foodGroupPatterns={grainsPattern} />
                     <FoodGroupProgress foodGroupState={myDairyState} foodGroupPattern={dairyPattern} />
                     <CollapsableFoodGroupProgress foodGroupStates={myProteinState} foodGroupPatterns={proteinPattern} />
-                    {/* {dietPattern.map(foodGroupPattern => {
-                        const myFoodStateFoodGroup = myFoodState.filter(food => food.group === foodGroupPattern.group)
-                        return <FoodGroupProgress key={foodGroupPattern.group} myFoodStateFoodGroup={myFoodStateFoodGroup} foodGroupPattern={foodGroupPattern}
-                        />
-                    })} */}
                 </Box>
             </Stack>
         </Box>
